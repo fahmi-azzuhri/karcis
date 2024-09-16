@@ -9,7 +9,7 @@ const register = async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
-    const user = await prisma.user.create({
+    await prisma.user.create({
       data: {
         firstName,
         lastName,
