@@ -1,7 +1,12 @@
 import React from "react";
-
+import { Routes, Route } from "react-router-dom";
+import Home from "../views/home";
 function AppRoutes() {
-  return <div>index</div>;
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
+  );
 }
 
 export default AppRoutes;
