@@ -63,6 +63,9 @@ function App() {
             )}
           </IconButton>
         </div>
+        <button className="rounded-lg bg-blue-500 px-5 py-2 hover:bg-blue-600">
+          Login
+        </button>
       </div>
 
       <Collapse open={openNav} className="lg:hidden">
