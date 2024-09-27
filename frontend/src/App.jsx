@@ -14,7 +14,7 @@ function App() {
   const navList = (
     <ul className="mt-2 flex flex-col text-white gap-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       {textNavbar.map((item, index) => (
-        <li key={index} className="p-1 text-default font-bold">
+        <li key={index} className="p-1 text-blackDefault font-bold">
           <button>{item}</button>
         </li>
       ))}
