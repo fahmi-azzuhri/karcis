@@ -69,7 +69,7 @@ function App() {
               )}
             </IconButton>
           </div>
-          <button className="rounded-lg bg-blue-500 px-5 py-2 hover:bg-blue-600">
+          <button className="rounded-lg bg-blueDefault text-white px-5 py-2 hover:bg-blueDarkest">
             Login
           </button>
         </div>
