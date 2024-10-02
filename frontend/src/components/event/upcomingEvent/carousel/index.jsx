@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import NextArrow from "./NextArrow";
 import PrevArrow from "./PrevArrow";
+import Carousels from "../../../../views/upcomingEvent/carousel";
 
 function Carousel() {
   const settings = {
@@ -40,26 +41,7 @@ function Carousel() {
     },
   ];
 
-  return (
-    <div className="max-w-screen-2xl mx-auto p-8">
-      <Slider {...settings}>
-        {cards.map((card, index) => (
-          <div key={index} className="px-4">
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-              <img
-                src={card.image}
-                alt={card.text}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-bold">{card.text}</h3>
-              </div>
-            </div>
-          </div>
-        ))}
-      </Slider>
-    </div>
-  );
+  return <Carousels settings={settings} cards={cards} Slider={Slider} />;
 }
 
 export default Carousel;
