@@ -5,9 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import NextArrow from "./NextArrow";
 import PrevArrow from "./PrevArrow";
+import Carousels from "../../../../views/upcomingEvent/carousel";
 
 function Carousel() {
   const settings = {
+    centerMode: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -15,6 +17,37 @@ function Carousel() {
     nextArrow: <NextArrow IoIosArrowForward={IoIosArrowForward} />,
     prevArrow: <PrevArrow IoIosArrowBack={IoIosArrowBack} />,
     swipe: true,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const cards = [
@@ -40,26 +73,7 @@ function Carousel() {
     },
   ];
 
-  return (
-    <div className="max-w-screen-lg mx-auto p-8">
-      <Slider {...settings}>
-        {cards.map((card, index) => (
-          <div key={index} className="px-4">
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-              <img
-                src={card.image}
-                alt={card.text}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-bold">{card.text}</h3>
-              </div>
-            </div>
-          </div>
-        ))}
-      </Slider>
-    </div>
-  );
+  return <Carousels settings={settings} cards={cards} Slider={Slider} />;
 }
 
 export default Carousel;
