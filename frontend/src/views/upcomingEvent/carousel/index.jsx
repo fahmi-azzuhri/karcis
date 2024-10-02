@@ -1,6 +1,6 @@
 import React from "react";
 
-function Carousels(props) {
+function Carousel(props) {
   const { settings, cards, Slider } = props;
   return (
     <div className="max-w-screen-2xl mx-auto p-8">
@@ -24,4 +24,4 @@ function Carousels(props) {
   );
 }
 
-export default Carousels;
+export default Carousel;
