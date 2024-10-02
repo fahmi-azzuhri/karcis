@@ -10,7 +10,7 @@ function Carousel() {
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     nextArrow: <NextArrow IoIosArrowForward={IoIosArrowForward} />,
     prevArrow: <PrevArrow IoIosArrowBack={IoIosArrowBack} />,
@@ -41,7 +41,7 @@ function Carousel() {
   ];
 
   return (
-    <div className="max-w-screen-lg mx-auto p-8">
+    <div className="max-w-screen-2xl mx-auto p-8">
       <Slider {...settings}>
         {cards.map((card, index) => (
           <div key={index} className="px-4">
