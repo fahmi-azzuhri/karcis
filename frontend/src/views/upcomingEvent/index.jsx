@@ -1,6 +1,6 @@
 import React from "react";
 
-function Carousel(props) {
+function ViewUpcomingEvent(props) {
   const { settings, cards, Slider } = props;
   return (
     <div className="max-w-screen-2xl mx-auto p-8">
@@ -24,4 +24,4 @@ function Carousel(props) {
   );
 }
 
-export default Carousel;
+export default ViewUpcomingEvent;
