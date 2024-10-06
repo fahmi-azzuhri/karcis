@@ -2,6 +2,7 @@ import React from "react";
 import bg_home from "/img/bg/bg_home.png";
 import SearchBar from "../../components/home/SearchBar";
 import Events from "../../components/event";
+import Footer from "../../components/footer";
 
 function Home() {
   return (
@@ -17,6 +18,9 @@ function Home() {
       </div>
       <div className="p-7 mt-10 bg-white">
         <Events />
+      </div>
+      <div>
+        <Footer />
       </div>
     </>
   );
