@@ -1,7 +1,7 @@
 import React from "react";
 import bg_home from "/img/bg/bg_home.png";
 import SearchBar from "../../components/home/SearchBar";
-import Events from "../../components/event";
+import Events from "../../components/home/event";
 
 function Home() {
   return (
