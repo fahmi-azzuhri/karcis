@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import NextArrow from "./button/NextArrow";
 import PrevArrow from "./button/PrevArrow";
-import ViewTopSelling from "../../../../views/topSelling";
+import ViewTopSelling from "../../../../views/home/event/topSelling";
 
 function TopSelling() {
   const settings = {
