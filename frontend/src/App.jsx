@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IconButton, Collapse } from "@material-tailwind/react";
 import logo_karcis from "/img/logo/logo_karcis.png";
 import AppRoutes from "./routes";
+import Footer from "./components/footer";
 function App() {
   const [openNav, setOpenNav] = useState(false);
   const textNavbar = [
@@ -81,6 +82,10 @@ function App() {
 
       <div>
         <AppRoutes />
+      </div>
+
+      <div>
+        <Footer />
       </div>
     </>
   );
