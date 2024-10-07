@@ -5,9 +5,9 @@ import "slick-carousel/slick/slick-theme.css";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import NextArrow from "./button/NextArrow";
 import PrevArrow from "./button/PrevArrow";
-import ViewBrowseArts from "../../../views/browseArts";
+import ViewTopSelling from "../../../../views/home/event/topSelling";
 
-function BrowseArts() {
+function TopSelling() {
   const settings = {
     centerMode: true,
     infinite: true,
@@ -73,7 +73,7 @@ function BrowseArts() {
     },
   ];
 
-  return <ViewBrowseArts settings={settings} cards={cards} Slider={Slider} />;
+  return <ViewTopSelling settings={settings} cards={cards} Slider={Slider} />;
 }
 
-export default BrowseArts;
+export default TopSelling;
