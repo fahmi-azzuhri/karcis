@@ -1,5 +1,5 @@
 import React from "react";
-
+import { FaTwitter, FaInstagram, FaFacebookSquare } from "react-icons/fa";
 function ViewFooter(props) {
   const { about, partner, support, app, ios, android } = props;
   return (
@@ -40,6 +40,26 @@ function ViewFooter(props) {
             ))}
             <img className="w-32 mb-1" src={ios} alt="" />
             <img className="w-32" src={android} alt="" />
+          </div>
+        </div>
+      </div>
+
+      <hr />
+      <div className="container mx-auto px-8 py-8">
+        <div className="flex justify-between items-center">
+          <div className="flex space-x-4">
+            <a href="#">
+              <FaTwitter />
+            </a>
+            <a href="#">
+              <FaInstagram />
+            </a>
+            <a href="#">
+              <FaFacebookSquare />
+            </a>
+          </div>
+          <div>
+            <p>&copy; 2020 Karcis incorporated</p>
           </div>
         </div>
       </div>
