@@ -1,5 +1,6 @@
 import React from "react";
-import { FaTwitter, FaInstagram, FaFacebookSquare } from "react-icons/fa";
+import { FooterSocialMedia } from "../../components/socialMedia";
+
 function ViewFooter(props) {
   const { about, partner, support, app, ios, android } = props;
   return (
@@ -47,17 +48,7 @@ function ViewFooter(props) {
       <hr />
       <div className="container mx-auto px-8 py-8">
         <div className="flex justify-between items-center">
-          <div className="flex space-x-4">
-            <a href="#">
-              <FaTwitter />
-            </a>
-            <a href="#">
-              <FaInstagram />
-            </a>
-            <a href="#">
-              <FaFacebookSquare />
-            </a>
-          </div>
+          <FooterSocialMedia />
           <div>
             <p>&copy; 2020 Karcis incorporated</p>
           </div>

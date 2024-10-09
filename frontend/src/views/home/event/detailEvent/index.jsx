@@ -1,9 +1,10 @@
 import React from "react";
-
+import { DetailEventSocialMedia } from "../../../../components/socialMedia";
 function ViewDetailEvent() {
   return (
     <div className="container mx-auto p-6 bg-gray-50">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+        <DetailEventSocialMedia />
         <img
           src="https://via.placeholder.com/1200x400"
           alt="Drive In Senja Event Banner"

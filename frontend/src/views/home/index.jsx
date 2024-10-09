@@ -2,6 +2,7 @@ import React from "react";
 import bg_home from "/img/bg/bg_home.png";
 import SearchBar from "../../components/home/SearchBar";
 import Events from "../../components/home/event";
+import DetailEvent from "../../components/home/event/detailEvent";
 
 function Home() {
   return (
@@ -17,6 +18,9 @@ function Home() {
       </div>
       <div className="p-7 mt-10 bg-white">
         <Events />
+      </div>
+      <div className="p-7 mt-10 bg-white">
+        <DetailEvent />
       </div>
     </>
   );
