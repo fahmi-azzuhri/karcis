@@ -3,6 +3,7 @@ import { FooterSocialMedia } from "../../components/socialMedia";
 
 function ViewFooter(props) {
   const { about, partner, support, app, ios, android } = props;
+  const getFullYear = new Date().getFullYear();
   return (
     <footer className="bg-blueDefault text-white">
       <div className="container mx-auto px-8 py-12">
@@ -50,7 +51,7 @@ function ViewFooter(props) {
         <div className="flex justify-between items-center">
           <FooterSocialMedia />
           <div>
-            <p>&copy; 2020 Karcis incorporated</p>
+            <p>&copy; {getFullYear} Karcis incorporated</p>
           </div>
         </div>
       </div>
