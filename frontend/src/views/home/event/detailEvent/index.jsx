@@ -1,6 +1,9 @@
 import React from "react";
 import { DetailEventSocialMedia } from "../../../../components/socialMedia";
-function ViewDetailEvent() {
+import Accrdions from "../../../../components/home/event/detailEvent/Accrdions";
+
+function ViewDetailEvent(props) {
+  const { FaRegClock, IoPeople, IoWarning } = props;
   return (
     <div className="container mx-auto p-6 bg-gray-50">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -48,26 +51,38 @@ function ViewDetailEvent() {
           </div>
         </div>
       </div>
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 shadow-lg rounded-lg">
-          <h3 className="text-xl font-semibold">Duration</h3>
-          <p className="text-gray-600">20:00 - 21:56 WIB</p>
-          <p className="text-gray-600">1 hour 56 minutes</p>
-        </div>
-        <div className="bg-white p-6 shadow-lg rounded-lg">
-          <h3 className="text-xl font-semibold">Audience</h3>
-          <p className="text-gray-600">
-            This movie is suitable for audience aged 12 and above
-          </p>
-        </div>
-        <div className="bg-white p-6 shadow-lg rounded-lg">
-          <h3 className="text-xl font-semibold">Attention</h3>
-          <p className="text-gray-600">
-            Face mask and social distancing are mandatory outside the car.
-          </p>
+      <div>
+        <h2 className="p-6 text-2xl font-semibold mt-8">Event Information</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="p-6">
+            <div className="flex flex-row space-x-2 items-center">
+              <FaRegClock />
+              <h3 className="text-xl font-semibold mt-1">Duration</h3>
+            </div>
+            <p className="text-gray-600">20:00 - 21:56 WIB</p>
+            <p className="text-gray-600">1 hour 56 minutes</p>
+          </div>
+          <div className="p-6 ">
+            <div className="flex flex-row space-x-2 items-center">
+              <IoPeople />
+              <h3 className="text-xl font-semibold mt-1">Audience</h3>
+            </div>
+            <p className="text-gray-600">
+              This movie is suitable for audience aged 12 and above
+            </p>
+          </div>
+          <div className="p-6">
+            <div className="flex flex-row space-x-2 items-center">
+              <IoWarning />
+              <h3 className="text-xl font-semibold mt-1">Attention</h3>
+            </div>
+            <p className="text-gray-600">
+              Face mask and social distancing are mandatory outside the car.
+            </p>
+          </div>
         </div>
       </div>
-      <div className="mt-8 bg-white p-6 shadow-lg rounded-lg">
+      <div className="mt-8 p-6">
         <h3 className="text-xl font-semibold">Description</h3>
         <p className="text-gray-600 mt-4">
           Drive-In Senja memberikan retro drive-in experience yang dikemas
@@ -78,6 +93,7 @@ function ViewDetailEvent() {
           komunitas.
         </p>
       </div>
+      <Accrdions title="Terms & Conditions" desc="lorem" />
     </div>
   );
 }
