@@ -2,7 +2,7 @@ import React from "react";
 
 function SearchBar() {
   return (
-    <div className="absolute bottom-[-35px] left-1/2 transform -translate-x-1/2 w-3/4 bg-white p-4 rounded-lg shadow-lg flex items-center space-x-4 border border-gray-900">
+    <div className="relative mt-[-35px] mx-auto w-3/4 bg-white p-4 rounded-lg shadow-lg flex items-center space-x-4 border border-gray-900 z-10">
       <input
         type="text"
         placeholder="Search by events, name, location, and more"
