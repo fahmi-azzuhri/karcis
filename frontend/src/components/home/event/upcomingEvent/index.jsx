@@ -2,9 +2,8 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import NextArrow from "./button/NextArrow";
-import PrevArrow from "./button/PrevArrow";
+import NextArrow from "../button/NextArrow";
+import PrevArrow from "../button/PrevArrow";
 import ViewUpcomingEvent from "../../../../views/home/event/upcomingEvent";
 
 function UpcomingEvent() {
@@ -14,8 +13,8 @@ function UpcomingEvent() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    nextArrow: <NextArrow IoIosArrowForward={IoIosArrowForward} />,
-    prevArrow: <PrevArrow IoIosArrowBack={IoIosArrowBack} />,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     swipe: true,
     initialSlide: 0,
     responsive: [
