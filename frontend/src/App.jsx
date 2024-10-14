@@ -28,7 +28,7 @@ function App() {
   };
   return (
     <>
-      <nav className="sticky top-0 z-10 max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 bg-white rounded-lg border border-gray-300">
+      <nav className="sticky top-0 z-20 max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 bg-white rounded-lg border border-gray-300">
         <div className="flex items-center justify-between">
           <img
             src={logo_karcis}
