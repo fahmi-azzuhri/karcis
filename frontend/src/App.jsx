@@ -86,7 +86,7 @@ function App() {
               onClick={handleLogin}
               className="rounded-lg bg-blueDefault text-white px-5 py-2 hover:bg-blueDarkest"
             >
-              Login
+              Sign In
             </button>
           </div>
 
