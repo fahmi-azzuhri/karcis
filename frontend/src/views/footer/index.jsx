@@ -5,7 +5,7 @@ function ViewFooter(props) {
   const { about, partner, support, app, ios, android } = props;
   const getFullYear = new Date().getFullYear();
   return (
-    <footer className="bg-blueDefault text-white">
+    <footer className="bg-blueDefault text-white bottom-0">
       <div className="container mx-auto px-8 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
           <h2 className="font-semibold text-xl">Karcis.com</h2>
