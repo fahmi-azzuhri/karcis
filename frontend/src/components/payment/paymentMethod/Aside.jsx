@@ -12,17 +12,33 @@ function Aside() {
           September 21, 2024 | 20:00 - 21:30 WIB
         </p>
       </div>
-      <div className="mb-4">
+      <hr className="border-t border-dashed border-bluePrimaryLight my-4 w-full" />
+      <div className="mt-4">
         <h4 className="text-lg font-semibold">Order Summary</h4>
-        <p className="text-gray-600">Ticket Type: 2x Paket VIP</p>
-        <p className="text-gray-600">Ticket Price: 2x Rp. 370,000</p>
-        <p className="text-gray-600">Service & Handling: Rp. 20,000</p>
-        <p className="text-gray-600">Admin Fee: Rp. 2,000</p>
+        <div className="flex justify-between text-gray-600">
+          <span>Ticket Type:</span>
+          <span className="text-sm text-gray-900">2x Paket VIP</span>
+        </div>
+        <hr className="border-t border-dashed border-bluePrimaryLight my-4 w-full" />
+        <div className="flex justify-between text-gray-600">
+          <span>Ticket Price:</span>
+          <span className="text-sm text-gray-900">2x Rp. 370,000</span>
+        </div>
+        <div className="flex justify-between text-gray-600">
+          <span>Service & Handling:</span>
+          <span className="text-sm text-gray-900">Rp. 20,000</span>
+        </div>
+        <div className="flex justify-between text-gray-600">
+          <span>Admin Fee:</span>
+          <span className="text-sm text-gray-900">Rp. 2,000</span>
+        </div>
       </div>
-      <div className="text-lg font-bold">
-        Total: <span className="text-purple-600">Rp. 762,000</span>
+      <hr className="border-t border-dashed border-bluePrimaryLight my-4 w-full" />
+      <div className="flex justify-between text-lg font-bold">
+        <span>Total:</span>
+        <span className="text-sm text-gray-900">Rp. 762,000</span>
       </div>
-      <button className="w-full bg-purple-500 text-white py-2 mt-4 rounded-md hover:bg-purple-600">
+      <button className="w-full bg-blueDefault hover:bg-blueDarkest text-white py-2 mt-4 rounded-md">
         Pay Now
       </button>
     </aside>
