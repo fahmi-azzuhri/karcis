@@ -46,7 +46,7 @@ function ViewAside(props) {
       ) : (
         <button
           onClick={handlePayment}
-          className="cursor-pointer mt-4 w-full bg-blueDefault hover:bg-blueDarkest text-white px-4 py-2 rounded"
+          className="mt-4 w-full bg-blueDefault hover:bg-blueDarkest text-white px-4 py-2 rounded"
         >
           Continue to Payment
         </button>
