@@ -1,6 +1,13 @@
 import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Aside() {
+  const location = useLocation();
+  const isAside = location.pathname === "/payment/payment-method";
+  const navigate = useNavigate();
+  const handlePayment = () => {
+    navigate("/payment/payment-method", { replace: true });
+  };
   return (
     <aside className="w-1/3 p-6">
       <h3 className="text-2xl font-bold mb-4">Event Details</h3>
@@ -38,9 +45,18 @@ function Aside() {
         <span>Total:</span>
         <span className="text-sm text-gray-900">Rp. 762,000</span>
       </div>
-      <button className="w-full bg-blueDefault hover:bg-blueDarkest text-white py-2 mt-4 rounded-md">
-        Pay Now
-      </button>
+      {!!isAside ? (
+        <button className="w-full bg-blueDefault hover:bg-blueDarkest text-white py-2 mt-4 rounded-md">
+          Pay Now
+        </button>
+      ) : (
+        <button
+          onClick={handlePayment}
+          className="cursor-pointer mt-4 w-full bg-blueDefault hover:bg-blueDarkest text-white px-4 py-2 rounded"
+        >
+          Continue to Payment
+        </button>
+      )}
     </aside>
   );
 }
