@@ -6,6 +6,7 @@ import SignUp from "../components/auth/signUp";
 import PaymentCompleted from "../components/payment/paymentCompleted";
 import PaymentMethod from "../components/payment/paymentMethod";
 import TicketInfo from "../components/home/event/ticketInfo";
+import Checkout from "../components/home/event/checkout";
 function AppRoutes() {
   return (
     <Routes>
@@ -15,6 +16,7 @@ function AppRoutes() {
       <Route path="/payment/payment-completed" element={<PaymentCompleted />} />
       <Route path="/payment/payment-method" element={<PaymentMethod />} />
       <Route path="/event/ticket-info" element={<TicketInfo />} />
+      <Route path="/event/checkout" element={<Checkout />} />
     </Routes>
   );
 }

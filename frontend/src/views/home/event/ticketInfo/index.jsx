@@ -83,6 +83,9 @@ function ViewTicketInfo(props) {
             </div>
           ))}
         </div>
+        <button className="bg-blueDefault hover:bg-blueDarkest text-white w-full text-center p-4 my-5">
+          Checkout now!
+        </button>
       </div>
     </div>
   );
