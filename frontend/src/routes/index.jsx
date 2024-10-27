@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "../views/home";
 import SignIn from "../components/auth/signIn";
 import SignUp from "../components/auth/signUp";
@@ -8,6 +8,7 @@ import PaymentMethod from "../components/payment/paymentMethod";
 import TicketInfo from "../components/home/event/ticketInfo";
 import Checkout from "../components/home/event/checkout";
 import PaymentWaiting from "../components/payment/paymentWaiting";
+import Dashboard from "../components/admin/dashboard";
 function AppRoutes() {
   return (
     <Routes>
@@ -19,6 +20,8 @@ function AppRoutes() {
       <Route path="/payment/waiting-payment/" element={<PaymentWaiting />} />
       <Route path="/event/ticket-info" element={<TicketInfo />} />
       <Route path="/event/checkout" element={<Checkout />} />
+      <Route path="/admin/dashboard/home" element={<Dashboard />} />
+      <Route path="/admin/dashboard/events" element={<Dashboard />} />
     </Routes>
   );
 }
