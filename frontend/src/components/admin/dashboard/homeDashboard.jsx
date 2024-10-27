@@ -1,5 +1,8 @@
 import React from "react";
 import SummaryCard from "../dashboard/summaryCard";
+import { PiMoneyWavyDuotone } from "react-icons/pi";
+import { FaUsers, FaUserPlus } from "react-icons/fa";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
 function HomeDashboard() {
   return (
     <div>
@@ -8,25 +11,25 @@ function HomeDashboard() {
           title="Today's Money"
           value="$53k"
           percentChange={55}
-          icon={<i className="fas fa-camera text-xl text-gray-500"></i>}
+          icon={<PiMoneyWavyDuotone />}
         />
         <SummaryCard
           title="Today's Users"
           value="2,300"
           percentChange={3}
-          icon={<i className="fas fa-user text-xl text-gray-500"></i>}
+          icon={<FaUsers />}
         />
         <SummaryCard
           title="New Clients"
           value="3,462"
           percentChange={-2}
-          icon={<i className="fas fa-user-plus text-xl text-gray-500"></i>}
+          icon={<FaUserPlus />}
         />
         <SummaryCard
           title="Sales"
           value="$103,430"
           percentChange={5}
-          icon={<i className="fas fa-chart-line text-xl text-gray-500"></i>}
+          icon={<FaMoneyBillTrendUp />}
         />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
