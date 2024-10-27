@@ -30,7 +30,9 @@ function App() {
   const location = useLocation();
   const isAuthPage =
     location.pathname === "/signin" || location.pathname === "/signup";
-  const isAdminPage = location.pathname === "/admin/dashboard/home";
+  const isAdminPage =
+    location.pathname === "/admin/dashboard/home" ||
+    location.pathname === "/admin/dashboard/events";
   return (
     <>
       {!isAuthPage && !isAdminPage && (
