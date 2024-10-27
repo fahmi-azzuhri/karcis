@@ -22,22 +22,20 @@ function Form(props) {
           />
         </div>
       </div>
-
-      <div>
-        <label className="block text-gray-700">Phone number</label>
-        <input
-          type="tel"
-          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Your phone number"
-        />
-      </div>
-
       <div>
         <label className="block text-gray-700">Email address</label>
         <input
           type="email"
           className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="name@example.com"
+        />
+      </div>
+      <div>
+        <label className="block text-gray-700">Password</label>
+        <input
+          type="password"
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Your password"
         />
       </div>
 
