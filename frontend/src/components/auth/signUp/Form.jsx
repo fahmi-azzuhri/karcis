@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import ViewForm from "../../../views/auth/Form";
+import ViewForm from "../../../views/auth/signUp/Form";
 
 function Form(props) {
   const { handleLogin } = props;
