@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IconButton, Collapse } from "@material-tailwind/react";
 import logo_karcis from "/img/logo/logo_karcis.png";
 import AppRoutes from "./routes";
 import Footer from "./components/footer";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FaRegUser } from "react-icons/fa";
+import Cookies from "js-cookie";
 function App() {
   const [openNav, setOpenNav] = useState(false);
+  const [firstname, setFirstname] = useState("");
+  useEffect(() => {
+    const firstname = Cookies.get("firstname");
+    if (firstname) {
+      setFirstname(firstname);
+    }
+  }, []);
   const textNavbar = [
     "Concerts",
     "Arts",
@@ -33,6 +42,7 @@ function App() {
   const isAdminPage =
     location.pathname === "/admin/dashboard/home" ||
     location.pathname === "/admin/dashboard/events";
+
   return (
     <>
       {!isAuthPage && !isAdminPage && (
@@ -84,12 +94,19 @@ function App() {
                 )}
               </IconButton>
             </div>
-            <button
-              onClick={handleLogin}
-              className="rounded-lg bg-blueDefault text-white px-5 py-2 hover:bg-blueDarkest"
-            >
-              Sign In
-            </button>
+            {firstname ? (
+              <button className="flex flex-row gap-1 items-center rounded-lg bg-blueDefault text-white px-4 py-2 hover:bg-blueDarkest">
+                <FaRegUser />
+                {firstname}
+              </button>
+            ) : (
+              <button
+                onClick={handleLogin}
+                className="rounded-lg bg-blueDefault text-white px-4 py-2 hover:bg-blueDarkest"
+              >
+                Sign In
+              </button>
+            )}
           </div>
 
           <Collapse open={openNav} className="lg:hidden">

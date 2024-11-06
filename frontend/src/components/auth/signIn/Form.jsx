@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ViewForm from "../../../views/auth/signIn/Form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import Cookies from "js-cookie";
 function Form(props) {
   const { handleRegister } = props;
   const [email, setEmail] = useState("");
@@ -20,7 +20,10 @@ function Form(props) {
         }
       );
       console.log(response);
-      navigate("/admin/dashboard/home");
+      const { token, firstname } = response.data;
+      Cookies.set("token", token);
+      Cookies.set("firstname", firstname);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
