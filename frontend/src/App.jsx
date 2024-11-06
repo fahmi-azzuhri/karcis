@@ -105,7 +105,9 @@ function App() {
                   className="flex flex-row gap-1 items-center rounded-lg text-blueDefault bg-white px-4 py-2 "
                 >
                   <FaRegUser />
-                  <p>Halo, {firstname.toUpperCase()}</p>
+                  <p className="font-semibold">
+                    Halo, {firstname.toUpperCase()}
+                  </p>
                 </button>
                 {isDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
