@@ -5,6 +5,7 @@ import AppRoutes from "./routes";
 import Footer from "./components/footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
+import { RiArrowDropDownLine } from "react-icons/ri";
 import Cookies from "js-cookie";
 function App() {
   const [openNav, setOpenNav] = useState(false);
@@ -105,8 +106,13 @@ function App() {
                   className="flex flex-row gap-1 items-center rounded-lg text-blueDefault bg-white px-4 py-2 "
                 >
                   <FaRegUser />
-                  <p className="font-semibold">
+                  <p className="font-semibold flex flex-row items-center">
                     Halo, {firstname.toUpperCase()}
+                    <RiArrowDropDownLine
+                      className={`transition-transform duration-300 ${
+                        isDropdownOpen ? "rotate-180" : "rotate-0"
+                      }`}
+                    />
                   </p>
                 </button>
                 {isDropdownOpen && (
