@@ -9,6 +9,10 @@ import Cookies from "js-cookie";
 function App() {
   const [openNav, setOpenNav] = useState(false);
   const [firstname, setFirstname] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
   useEffect(() => {
     const firstname = Cookies.get("firstname");
     if (firstname) {
@@ -95,10 +99,32 @@ function App() {
               </IconButton>
             </div>
             {firstname ? (
-              <button className="flex flex-row gap-1 items-center rounded-lg bg-blueDefault text-white px-4 py-2 hover:bg-blueDarkest">
-                <FaRegUser />
-                {firstname}
-              </button>
+              <div className="relative">
+                <button
+                  onClick={toggleDropdown}
+                  className="flex flex-row gap-1 items-center rounded-lg text-blueDefault bg-white px-4 py-2 "
+                >
+                  <FaRegUser />
+                  <p className="font-semibold">
+                    Halo, {firstname.toUpperCase()}
+                  </p>
+                </button>
+                {isDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                    <ul className="py-1">
+                      <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">
+                        Profile
+                      </li>
+                      <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">
+                        Settings
+                      </li>
+                      <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">
+                        Logout
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
             ) : (
               <button
                 onClick={handleLogin}
