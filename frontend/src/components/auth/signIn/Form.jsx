@@ -24,6 +24,7 @@ function Form(props) {
       Cookies.set("token", token);
       Cookies.set("firstname", firstname);
       navigate("/");
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
