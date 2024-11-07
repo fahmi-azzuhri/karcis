@@ -3,11 +3,19 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { HiHome } from "react-icons/hi2";
 import { MdEvent } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
+import Cookies from "js-cookie";
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isActiveHome = location.pathname === "/admin/dashboard/home";
   const isActiveEvent = location.pathname === "/admin/dashboard/events";
+  const handleSignout = () => {
+    Cookies.remove("token");
+    Cookies.remove("firstname");
+    Cookies.remove("role");
+    navigate("/");
+    window.location.reload();
+  };
   return (
     <div className="bg-white w-full lg:w-64 min-h-screen p-4 flex flex-col shadow-lg rounded-2xl m-4">
       <h2
@@ -40,9 +48,12 @@ const Sidebar = () => {
           </button>
         </li>
         <li className="font-medium">
-          <button className="flex items-center p-3 text-gray-700 hover:bg-blueDefault hover:text-white rounded-lg w-full gap-2">
+          <button
+            onClick={handleSignout}
+            className="flex items-center p-3 text-gray-700 hover:bg-blueDefault hover:text-white rounded-lg w-full gap-2"
+          >
             <CiLogout />
-            Sign out
+            Signout
           </button>
         </li>
       </ul>

@@ -24,6 +24,7 @@ function App() {
   const handleSignout = () => {
     Cookies.remove("token");
     Cookies.remove("firstname");
+    Cookies.remove("role");
     setFirstname("");
     navigate("/");
     window.location.reload();
