@@ -19,12 +19,18 @@ function Form(props) {
           password: password,
         }
       );
-      console.log(response);
-      const { token, firstname } = response.data;
+
+      const { token, firstname, role } = response.data;
       Cookies.set("token", token);
       Cookies.set("firstname", firstname);
-      navigate("/");
+      Cookies.set("role", role);
+      if (role === "user") {
+        navigate("/");
+      } else {
+        navigate("/admin/dashboard/home");
+      }
       window.location.reload();
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
