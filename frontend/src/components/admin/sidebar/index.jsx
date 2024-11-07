@@ -25,6 +25,7 @@ const Sidebar = () => {
       HiHome={HiHome}
       MdEvent={MdEvent}
       CiLogout={CiLogout}
+      navigate={navigate}
     />
   );
 };

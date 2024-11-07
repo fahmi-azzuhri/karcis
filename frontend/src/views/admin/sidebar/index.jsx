@@ -8,6 +8,7 @@ function ViewSidebar(props) {
     HiHome,
     MdEvent,
     CiLogout,
+    navigate,
   } = props;
   return (
     <div className="bg-white w-full lg:w-64 min-h-screen p-4 flex flex-col shadow-lg rounded-2xl m-4">
