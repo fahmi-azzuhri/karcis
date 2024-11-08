@@ -1,7 +1,9 @@
+// index.js
 import express from "express";
-import authRoutes from "./routes/authRoutes.js";
-import { generateAdminAccount } from "./services/adminService.js";
 import cors from "cors";
+import authRoutes from "./routes/authRoutes.js";
+import eventRoutes from "./routes/eventRoutes.js";
+import { generateAdminAccount } from "./services/adminService.js";
 
 const app = express();
 
@@ -11,8 +13,12 @@ app.use(
   })
 );
 app.use(express.json());
-app.use("/auth", authRoutes);
 
+// Set up routes
+app.use("/auth", authRoutes);
+app.use("/api", eventRoutes);
+
+// Generate an admin account on server start
 generateAdminAccount();
 
 const PORT = process.env.PORT || 3000;
