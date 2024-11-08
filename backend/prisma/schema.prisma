@@ -27,7 +27,8 @@ model Event {
   title               String
   location            String
   date                DateTime
-  duration            String
+  startTime           DateTime
+  endTime             DateTime
   audience            String
   attention           String
   description         String
