@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
+import AddEventModal from "../eventModal";
 
 function EventDashboard() {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+  const handleEventAdded = () => {
+    setIsOpen(false);
+  };
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <main className="flex-1 p-4">
+      <main className="flex-1">
         <div className="flex justify-end items-center mb-4 sm:mb-6">
           <div className="flex items-center gap-2 sm:gap-4">
-            <button className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base">
-              + Add Product
+            <button
+              onClick={handleOpenModal}
+              className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base"
+            >
+              + Add Event
             </button>
           </div>
         </div>
@@ -16,12 +30,14 @@ function EventDashboard() {
           <table className="min-w-full text-sm sm:text-base">
             <thead className="bg-blue-500 text-white">
               <tr>
-                <th className="p-2 sm:p-3 text-left">Product Name</th>
-                <th className="p-2 sm:p-3 text-left">Starting Stock</th>
-                <th className="p-2 sm:p-3 text-left">Current Stock</th>
-                <th className="p-2 sm:p-3 text-left">Availability</th>
-                <th className="p-2 sm:p-3 text-left">Price</th>
-                <th className="p-2 sm:p-3 text-left">Action</th>
+                <th className="p-2 sm:p-3 text-left">
+                  <th className="p-2 sm:p-3 text-left">Product Name</th>
+                  <th className="p-2 sm:p-3 text-left">Starting Stock</th>
+                  <th className="p-2 sm:p-3 text-left">Current Stock</th>
+                  <th className="p-2 sm:p-3 text-left">Availability</th>
+                  <th className="p-2 sm:p-3 text-left">Price</th>
+                  <th className="p-2 sm:p-3 text-left">Action</th>{" "}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -61,6 +77,12 @@ function EventDashboard() {
           </table>
         </div>
       </main>
+      {isOpen && (
+        <AddEventModal
+          onClose={handleCloseModal}
+          onEventAdded={handleEventAdded}
+        />
+      )}
     </div>
   );
 }
