@@ -14,14 +14,14 @@ function EventDashboard() {
   };
   return (
     <div className="flex min-h-screen bg-gray-100">
-      <main className="flex-1">
+      <main className="flex-1 p-4">
         <div className="flex justify-end items-center mb-4 sm:mb-6">
           <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={handleOpenModal}
               className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base"
             >
-              + Add Event
+              + Add Product
             </button>
           </div>
         </div>
@@ -30,14 +30,12 @@ function EventDashboard() {
           <table className="min-w-full text-sm sm:text-base">
             <thead className="bg-blue-500 text-white">
               <tr>
-                <th className="p-2 sm:p-3 text-left">
-                  <th className="p-2 sm:p-3 text-left">Product Name</th>
-                  <th className="p-2 sm:p-3 text-left">Starting Stock</th>
-                  <th className="p-2 sm:p-3 text-left">Current Stock</th>
-                  <th className="p-2 sm:p-3 text-left">Availability</th>
-                  <th className="p-2 sm:p-3 text-left">Price</th>
-                  <th className="p-2 sm:p-3 text-left">Action</th>{" "}
-                </th>
+                <th className="p-2 sm:p-3 text-left">Product Name</th>
+                <th className="p-2 sm:p-3 text-left">Starting Stock</th>
+                <th className="p-2 sm:p-3 text-left">Current Stock</th>
+                <th className="p-2 sm:p-3 text-left">Availability</th>
+                <th className="p-2 sm:p-3 text-left">Price</th>
+                <th className="p-2 sm:p-3 text-left">Action</th>
               </tr>
             </thead>
             <tbody>
