@@ -31,9 +31,13 @@ function AddEventModal({ onClose, onEventAdded }) {
     if (image) data.append("image", image);
 
     try {
-      await axios.post("/api/events", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.post(
+        `${import.meta.env.VITE_API_ENDPOINT}/api/events`,
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       onEventAdded();
       onClose();
     } catch (error) {
