@@ -67,6 +67,9 @@ function ViewEventDashboard(props) {
                 <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
                   Rame Premium Price
                 </th>
+                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
+                  Image
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -88,6 +91,13 @@ function ViewEventDashboard(props) {
                   <td className="p-2 sm:p-3">Rp {event.ngedatePremiumPrice}</td>
                   <td className="p-2 sm:p-3">Rp {event.ramePrice}</td>
                   <td className="p-2 sm:p-3">Rp {event.ramePremiumPrice}</td>
+                  <td className="p-2 sm:p-3">
+                    <img
+                      src={`http://localhost:3000${event.imageUrl}`}
+                      alt={event.title}
+                      className="w-full h-20 object-cover"
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>
