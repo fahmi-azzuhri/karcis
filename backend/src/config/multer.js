@@ -1,16 +1,12 @@
+// src/config/multer.js
 import multer from "multer";
 import path from "path";
 import fs from "fs";
-import { fileURLToPath } from "url";
 
-// Mendapatkan __dirname yang kompatibel dengan ESM
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Define the new upload directory path
+const uploadDir = path.join(process.cwd(), "uploads");
 
-// Tentukan path folder "uploads"
-const uploadDir = path.join(__dirname, "uploads");
-
-// Cek apakah folder "uploads" ada; jika tidak, buat foldernya
+// Ensure the "uploads" folder exists
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
@@ -20,7 +16,9 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const sanitizedFileName = file.originalname.replace(/\s/g, "_");
+    cb(null, `${uniqueSuffix}-${sanitizedFileName}`);
   },
 });
 
