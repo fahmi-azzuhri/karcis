@@ -22,19 +22,16 @@ router.post("/events", upload.single("image"), async (req, res) => {
       ramePrice,
       ramePremiumPrice,
     } = req.body;
-    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
-    // Convert startTime and endTime to Date objects
-    const startTimeDate = new Date(`${date}T${startTime}:00`);
-    const endTimeDate = new Date(`${date}T${endTime}:00`);
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
     const newEvent = await prisma.event.create({
       data: {
         title,
         location,
         date: new Date(date),
-        startTime: startTimeDate,
-        endTime: endTimeDate,
+        startTime: new Date(`${date}T${startTime}:00`),
+        endTime: new Date(`${date}T${endTime}:00`),
         audience,
         attention,
         description,

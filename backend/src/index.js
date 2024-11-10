@@ -1,4 +1,3 @@
-// index.js
 import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
@@ -13,10 +12,9 @@ app.use(
   })
 );
 app.use(express.json());
-
-// Set up routes
 app.use("/auth", authRoutes);
 app.use("/api", eventRoutes);
+app.use("/uploads", express.static("uploads"));
 
 // Generate an admin account on server start
 generateAdminAccount();
