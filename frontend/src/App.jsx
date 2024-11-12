@@ -55,7 +55,8 @@ function App() {
     location.pathname === "/signin" || location.pathname === "/signup";
   const isAdminPage =
     location.pathname === "/admin/dashboard/home" ||
-    location.pathname === "/admin/dashboard/events";
+    location.pathname === "/admin/dashboard/events" ||
+    location.pathname === "/admin/dashboard/price";
 
   return (
     <>
