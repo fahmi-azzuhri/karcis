@@ -1,11 +1,24 @@
 import React from "react";
+import PriceModal from "../../../components/admin/priceModal";
 
 function ViewPriceDashboard(props) {
-  const { events } = props;
+  const {
+    events,
+    handleOpenModal,
+    handleCloseModal,
+    isOpen,
+    handlePriceAdded,
+  } = props;
   return (
     <div className="flex min-h-screen bg-gray-100">
       <main className="flex-1 p-4 overflow-hidden">
         <div className="bg-white rounded-md shadow-md overflow-x-auto max-w-full">
+          <button
+            onClick={handleOpenModal}
+            className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base"
+          >
+            + Add Price
+          </button>
           <table className="min-w-full text-sm sm:text-base">
             <thead className="bg-blue-500 text-white">
               <tr>
@@ -44,6 +57,12 @@ function ViewPriceDashboard(props) {
           </table>
         </div>
       </main>
+      {isOpen && (
+        <PriceModal
+          handlePriceAdded={handlePriceAdded}
+          handleCloseModal={handleCloseModal}
+        />
+      )}
     </div>
   );
 }

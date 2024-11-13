@@ -26,6 +26,9 @@ function ViewEventDashboard(props) {
             <thead className="bg-blue-500 text-white">
               <tr>
                 <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
+                  Image
+                </th>
+                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
                   Title
                 </th>
                 <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
@@ -49,32 +52,18 @@ function ViewEventDashboard(props) {
                 <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
                   Description
                 </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
-                  Vip Price
-                </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
-                  Vvip Price
-                </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
-                  Ngedate Price
-                </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
-                  Ngedate Premium Price
-                </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
-                  Rame Price
-                </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
-                  Rame Premium Price
-                </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
-                  Image
-                </th>
               </tr>
             </thead>
             <tbody>
               {events.map((event) => (
                 <tr key={event.id} className="border-b hover:bg-gray-100">
+                  <td className="p-2 sm:p-3">
+                    <img
+                      src={`http://localhost:3000${event.imageUrl}`}
+                      alt={event.title}
+                      className="w-full h-20 object-cover"
+                    />
+                  </td>
                   <td className="p-2 sm:p-3">{event.title}</td>
                   <td className="p-2 sm:p-3">{event.location}</td>
                   <td className="p-2 sm:p-3">
@@ -85,19 +74,6 @@ function ViewEventDashboard(props) {
                   <td className="p-2 sm:p-3">{event.audience}</td>
                   <td className="p-2 sm:p-3">{event.attention}</td>
                   <td className="p-2 sm:p-3">{event.description}</td>
-                  <td className="p-2 sm:p-3">Rp {event.vipPrice}</td>
-                  <td className="p-2 sm:p-3">Rp {event.vvipPrice}</td>
-                  <td className="p-2 sm:p-3">Rp {event.ngedatePrice}</td>
-                  <td className="p-2 sm:p-3">Rp {event.ngedatePremiumPrice}</td>
-                  <td className="p-2 sm:p-3">Rp {event.ramePrice}</td>
-                  <td className="p-2 sm:p-3">Rp {event.ramePremiumPrice}</td>
-                  <td className="p-2 sm:p-3">
-                    <img
-                      src={`http://localhost:3000${event.imageUrl}`}
-                      alt={event.title}
-                      className="w-full h-20 object-cover"
-                    />
-                  </td>
                 </tr>
               ))}
             </tbody>
