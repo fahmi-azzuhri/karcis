@@ -5,7 +5,6 @@ function ViewSidebar(props) {
     handleSignout,
     isActiveHome,
     isActiveEvent,
-    isActivePrice,
     HiHome,
     MdEvent,
     CiLogout,
@@ -42,24 +41,14 @@ function ViewSidebar(props) {
             Event
           </button>
         </li>
-        <li className="font-medium">
-          <button
-            onClick={() => navigate("/admin/dashboard/price")}
-            className={`flex items-center p-3 text-gray-700 hover:bg-blueDefault hover:text-white rounded-lg w-full gap-2 ${
-              isActivePrice && "bg-blueDefault text-white"
-            }`}
-          >
-            <MdEvent />
-            Event Price
-          </button>
-        </li>
+
         <li className="font-medium">
           <button
             onClick={handleSignout}
             className="flex items-center p-3 text-gray-700 hover:bg-blueDefault hover:text-white rounded-lg w-full gap-2"
           >
             <CiLogout />
-            Signout
+            Sign out
           </button>
         </li>
       </ul>
