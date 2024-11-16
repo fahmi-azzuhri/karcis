@@ -22,7 +22,6 @@ function AppRoutes() {
       <Route path="/event/checkout" element={<Checkout />} />
       <Route path="/admin/dashboard/home" element={<Dashboard />} />
       <Route path="/admin/dashboard/events" element={<Dashboard />} />
-      <Route path="/admin/dashboard/price" element={<Dashboard />} />
     </Routes>
   );
 }

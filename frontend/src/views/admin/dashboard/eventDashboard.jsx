@@ -9,6 +9,7 @@ function ViewEventDashboard(props) {
     handleEventAdded,
     isOpen,
   } = props;
+
   return (
     <div className="flex min-h-screen bg-gray-100">
       <main className="flex-1 p-4 overflow-hidden">
@@ -21,36 +22,32 @@ function ViewEventDashboard(props) {
           </button>
         </div>
 
+        {/* Wrapper tabel responsif */}
         <div className="bg-white rounded-md shadow-md overflow-x-auto max-w-full">
           <table className="min-w-full text-sm sm:text-base">
             <thead className="bg-blue-500 text-white">
               <tr>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
-                  Image
-                </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
-                  Title
-                </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
+                <th className="p-2 sm:p-3 text-left">Image</th>
+                <th className="p-2 sm:p-3 text-left">Title</th>
+                <th className="p-2 sm:p-3 text-left hidden md:table-cell">
                   Location
                 </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
-                  Date
-                </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
+                <th className="p-2 sm:p-3 text-left">Date</th>
+                <th className="p-2 sm:p-3 text-left hidden lg:table-cell">
                   Start Time
                 </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
+                <th className="p-2 sm:p-3 text-left hidden lg:table-cell">
                   End Time
                 </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
-                  Audience
-                </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
+                <th className="p-2 sm:p-3 text-left">Audience</th>
+                <th className="p-2 sm:p-3 text-left hidden lg:table-cell">
                   Attention
                 </th>
-                <th className="p-2 sm:p-3 text-left text-sm sm:text-base">
+                <th className="p-2 sm:p-3 text-left hidden md:table-cell">
                   Description
+                </th>
+                <th className="p-2 sm:p-3 text-left hidden xl:table-cell">
+                  Prices
                 </th>
               </tr>
             </thead>
@@ -61,25 +58,46 @@ function ViewEventDashboard(props) {
                     <img
                       src={`http://localhost:3000${event.imageUrl}`}
                       alt={event.title}
-                      className="w-full h-20 object-cover"
+                      className="w-full h-20 object-cover rounded"
                     />
                   </td>
                   <td className="p-2 sm:p-3">{event.title}</td>
-                  <td className="p-2 sm:p-3">{event.location}</td>
+                  <td className="p-2 sm:p-3 hidden md:table-cell">
+                    {event.location}
+                  </td>
                   <td className="p-2 sm:p-3">
                     {new Date(event.date).toLocaleDateString()}
                   </td>
-                  <td className="p-2 sm:p-3">{event.startTime}</td>
-                  <td className="p-2 sm:p-3">{event.endTime}</td>
+                  <td className="p-2 sm:p-3 hidden lg:table-cell">
+                    {event.startTime}
+                  </td>
+                  <td className="p-2 sm:p-3 hidden lg:table-cell">
+                    {event.endTime}
+                  </td>
                   <td className="p-2 sm:p-3">{event.audience}</td>
-                  <td className="p-2 sm:p-3">{event.attention}</td>
-                  <td className="p-2 sm:p-3">{event.description}</td>
+                  <td className="p-2 sm:p-3 hidden lg:table-cell">
+                    {event.attention}
+                  </td>
+                  <td className="p-2 sm:p-3 hidden md:table-cell">
+                    {event.description}
+                  </td>
+                  <td className="p-2 sm:p-3 hidden xl:table-cell">
+                    <ul>
+                      <li>VIP: {event.vipPrice}</li>
+                      <li>VVIP: {event.vvipPrice}</li>
+                      <li>Ngedate: {event.ngedatePrice}</li>
+                      <li>Premium: {event.ngedatePremiumPrice}</li>
+                      <li>Rame: {event.ramePrice}</li>
+                      <li>Premium: {event.ramePremiumPrice}</li>
+                    </ul>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </main>
+
       {isOpen && (
         <AddEventModal
           onClose={handleCloseModal}

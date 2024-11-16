@@ -76,7 +76,48 @@ function ViewEventModal(props) {
             placeholder="Description"
             className="w-full p-2 mb-3 border rounded-md"
           />
-
+          <input
+            name="vipPrice"
+            value={formData.vipPrice}
+            onChange={handleInputChange}
+            placeholder="VIP Price"
+            className="w-full p-2 mb-3 border rounded-md"
+          />
+          <input
+            name="vvipPrice"
+            value={formData.vvipPrice}
+            onChange={handleInputChange}
+            placeholder="VVIP Price"
+            className="w-full p-2 mb-3 border rounded-md"
+          />
+          <input
+            name="ngedatePrice"
+            value={formData.ngedatePrice}
+            onChange={handleInputChange}
+            placeholder="Ngedate Price"
+            className="w-full p-2 mb-3 border rounded-md"
+          />
+          <input
+            name="ngedatePremiumPrice"
+            value={formData.ngedatePremiumPrice}
+            onChange={handleInputChange}
+            placeholder="Ngedate Premium Price"
+            className="w-full p-2 mb-3 border rounded-md"
+          />
+          <input
+            name="ramePrice"
+            placeholder="Rame Price"
+            value={formData.ramePrice}
+            onChange={handleInputChange}
+            className="w-full p-2 mb-3 border rounded-md"
+          />
+          <input
+            name="ramePremiumPrice"
+            value={formData.ramePremiumPrice}
+            onChange={handleInputChange}
+            placeholder="Rame Premium Price"
+            className="w-full p-2 mb-3 border rounded-md"
+          />
           <input
             type="file"
             onChange={handleFileChange}
