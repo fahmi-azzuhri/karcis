@@ -69,10 +69,16 @@ function ViewEventDashboard(props) {
                     {new Date(event.date).toLocaleDateString()}
                   </td>
                   <td className="p-2 sm:p-3 hidden lg:table-cell">
-                    {event.startTime}
+                    {new Date(event.startTime).toLocaleTimeString("id-ID", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
                   </td>
                   <td className="p-2 sm:p-3 hidden lg:table-cell">
-                    {event.endTime}
+                    {new Date(event.endTime).toLocaleTimeString("id-ID", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
                   </td>
                   <td className="p-2 sm:p-3">{event.audience}</td>
                   <td className="p-2 sm:p-3 hidden lg:table-cell">
