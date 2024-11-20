@@ -1,5 +1,6 @@
 import React from "react";
 import AddEventModal from "../../../components/admin/eventModal";
+import ReadMore from "./readMore";
 
 function ViewEventDashboard(props) {
   const {
@@ -85,7 +86,7 @@ function ViewEventDashboard(props) {
                     {event.attention}
                   </td>
                   <td className="p-2 sm:p-3 hidden md:table-cell">
-                    {event.description}
+                    <ReadMore text={event.description} maxLength={40} />
                   </td>
                   <td className="p-2 sm:p-3 hidden xl:table-cell">
                     <ul>
