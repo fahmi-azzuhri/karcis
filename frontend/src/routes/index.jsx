@@ -10,6 +10,7 @@ import Checkout from "../components/home/event/checkout";
 import PaymentWaiting from "../components/payment/paymentWaiting";
 import Dashboard from "../components/admin/dashboard";
 import DetailEvent from "../components/home/event/detailEvent";
+import ProtectedRoute from "./protectedRoute";
 function AppRoutes() {
   return (
     <Routes>
@@ -17,13 +18,48 @@ function AppRoutes() {
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/payment/payment-completed" element={<PaymentCompleted />} />
-      <Route path="/payment/payment-method" element={<PaymentMethod />} />
-      <Route path="/payment/waiting-payment/" element={<PaymentWaiting />} />
+      <Route
+        path="/payment/payment-method"
+        element={
+          <ProtectedRoute>
+            <PaymentMethod />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/payment/waiting-payment/"
+        element={
+          <ProtectedRoute>
+            <PaymentWaiting />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/event/ticket-info" element={<TicketInfo />} />
       <Route path="/event/detail-event" element={<DetailEvent />} />
-      <Route path="/event/checkout" element={<Checkout />} />
-      <Route path="/admin/dashboard/home" element={<Dashboard />} />
-      <Route path="/admin/dashboard/events" element={<Dashboard />} />
+      <Route
+        path="/event/checkout"
+        element={
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/dashboard/home"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/dashboard/events"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
