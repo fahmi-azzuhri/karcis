@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import ViewForm from "../../../views/auth/signUp/Form";
+import { useNavigate } from "react-router-dom";
 
 function Form(props) {
   const { handleLogin } = props;
@@ -9,6 +10,7 @@ function Form(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const isValid = firstname && lastname && email && password;
+  const navigate = useNavigate();
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
@@ -21,7 +23,7 @@ function Form(props) {
           password,
         }
       );
-      console.log(response);
+      navigate("/signin");
     } catch (error) {
       console.log(error);
     }
