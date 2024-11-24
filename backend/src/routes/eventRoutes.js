@@ -79,4 +79,79 @@ router.get("/events/:id", async (req, res) => {
   }
 });
 
+// PUT: Update an event by ID
+router.put("/events/:id", upload.single("image"), async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      title,
+      location,
+      date,
+      startTime,
+      endTime,
+      audience,
+      attention,
+      description,
+      vipPrice,
+      vvipPrice,
+      ngedatePrice,
+      ngedatePremiumPrice,
+      ramePrice,
+      ramePremiumPrice,
+    } = req.body;
+
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : undefined;
+
+    const updatedEvent = await prisma.event.update({
+      where: { id: parseInt(id, 10) },
+      data: {
+        title,
+        location,
+        date: date ? new Date(date) : undefined,
+        startTime: startTime ? new Date(`${date}T${startTime}:00`) : undefined,
+        endTime: endTime ? new Date(`${date}T${endTime}:00`) : undefined,
+        audience,
+        attention,
+        description,
+        vipPrice: vipPrice ? parseFloat(vipPrice) : undefined,
+        vvipPrice: vvipPrice ? parseFloat(vvipPrice) : undefined,
+        ngedatePrice: ngedatePrice ? parseFloat(ngedatePrice) : undefined,
+        ngedatePremiumPrice: ngedatePremiumPrice
+          ? parseFloat(ngedatePremiumPrice)
+          : undefined,
+        ramePrice: ramePrice ? parseFloat(ramePrice) : undefined,
+        ramePremiumPrice: ramePremiumPrice
+          ? parseFloat(ramePremiumPrice)
+          : undefined,
+        imageUrl,
+      },
+    });
+
+    res.status(200).json(updatedEvent);
+  } catch (error) {
+    if (error.code === "P2025") {
+      return res.status(404).json({ error: "Event not found" });
+    }
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// DELETE: Delete an event by ID
+router.delete("/events/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await prisma.event.delete({
+      where: { id: parseInt(id, 10) },
+    });
+
+    res.status(200).json({ message: "Event deleted successfully" });
+  } catch (error) {
+    if (error.code === "P2025") {
+      return res.status(404).json({ error: "Event not found" });
+    }
+    res.status(500).json({ error: error.message });
+  }
+});
+
 export default router;
