@@ -9,6 +9,9 @@ function ViewEventDashboard(props) {
     events,
     handleEventAdded,
     isOpen,
+    handleEditEvent,
+    editingEvent,
+    deleteEvents,
   } = props;
 
   return (
@@ -49,6 +52,9 @@ function ViewEventDashboard(props) {
                 </th>
                 <th className="p-2 sm:p-3 text-left hidden xl:table-cell">
                   Prices
+                </th>
+                <th className="p-2 sm:p-3 text-left hidden lg:table-cell">
+                  Action
                 </th>
               </tr>
             </thead>
@@ -94,8 +100,28 @@ function ViewEventDashboard(props) {
                       <li>VVIP: {event.vvipPrice}</li>
                       <li>Ngedate: {event.ngedatePrice}</li>
                       <li>Premium: {event.ngedatePremiumPrice}</li>
-                      <li>Rame: {event.ramePrice}</li>
+                      <zzli>Rame: {event.ramePrice}</zzli>
                       <li>Premium: {event.ramePremiumPrice}</li>
+                    </ul>
+                  </td>
+                  <td className="p-2 sm:p-3 hidden xl:table-cell">
+                    <ul className="flex flex-col gap-2">
+                      <li>
+                        <button
+                          onClick={() => handleEditEvent(event)}
+                          className="text-white hover:bg-blue-600 py-2 px-4 rounded-md bg-blueDefault"
+                        >
+                          Edit
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => deleteEvents(event.id)}
+                          className="text-white hover:bg-red-600 py-2 px-4 rounded-md bg-red-400"
+                        >
+                          Delete
+                        </button>
+                      </li>
                     </ul>
                   </td>
                 </tr>
@@ -109,6 +135,7 @@ function ViewEventDashboard(props) {
         <AddEventModal
           onClose={handleCloseModal}
           onEventAdded={handleEventAdded}
+          editingEvent={editingEvent}
         />
       )}
     </div>
