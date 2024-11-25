@@ -1,6 +1,8 @@
 import express from "express";
 import upload from "../config/multer.js";
 import prisma from "../config/prisma.js";
+import path from "path";
+import fs from "fs";
 const router = express.Router();
 
 //POST: Create a new event
@@ -141,6 +143,44 @@ router.delete("/events/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
+    // Cari event berdasarkan ID
+    const event = await prisma.event.findUnique({
+      where: { id: parseInt(id, 10) },
+    });
+
+    if (!event) {
+      return res.status(404).json({ error: "Event not found" });
+    }
+
+    // Jika event memiliki gambar
+    if (event.imageUrl) {
+      const imagePath = path.join(
+        process.cwd(),
+        "uploads",
+        path.basename(event.imageUrl)
+      );
+
+      // Log untuk debug
+      console.log(`Attempting to delete: ${imagePath}`);
+
+      // Cek apakah file ada sebelum dihapus
+      fs.access(imagePath, fs.constants.F_OK, (err) => {
+        if (err) {
+          console.error(`File not found: ${imagePath}`);
+        } else {
+          // Hapus file
+          fs.unlink(imagePath, (unlinkErr) => {
+            if (unlinkErr) {
+              console.error(`Error deleting file: ${imagePath}`, unlinkErr);
+            } else {
+              console.log(`File deleted: ${imagePath}`);
+            }
+          });
+        }
+      });
+    }
+
+    // Hapus data event dari database
     await prisma.event.delete({
       where: { id: parseInt(id, 10) },
     });
