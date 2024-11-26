@@ -23,9 +23,9 @@ function ViewUpcomingEvent(props) {
                   </div>
 
                   <div className="w-2/3 pl-4">
-                    <h3 className="text-xl font-semibold text-gray-900">
-                      {event.title.substring(0, 15)} ...
-                    </h3>
+                    <p className="text-md font-semibold text-gray-900">
+                      {event.title}
+                    </p>
                     <p className="text-sm text-gray-600 mt-1">
                       {event.location}
                     </p>
