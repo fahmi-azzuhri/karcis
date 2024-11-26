@@ -9,6 +9,11 @@ import axios from "axios";
 function UpcomingEvent() {
   const settings = SettingsSlider();
   const [events, setEvents] = useState([]);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  };
   const getEvents = async () => {
     try {
       const response = await axios.get(
@@ -26,7 +31,12 @@ function UpcomingEvent() {
   }, []);
 
   return (
-    <ViewUpcomingEvent settings={settings} Slider={Slider} events={events} />
+    <ViewUpcomingEvent
+      settings={settings}
+      Slider={Slider}
+      events={events}
+      formatDate={formatDate}
+    />
   );
 }
 
