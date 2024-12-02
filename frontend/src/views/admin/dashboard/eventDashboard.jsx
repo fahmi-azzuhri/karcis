@@ -100,7 +100,7 @@ function ViewEventDashboard(props) {
                       <li>VVIP: {event.vvipPrice}</li>
                       <li>Ngedate: {event.ngedatePrice}</li>
                       <li>Premium: {event.ngedatePremiumPrice}</li>
-                      <zzli>Rame: {event.ramePrice}</zzli>
+                      <li>Rame: {event.ramePrice}</li>
                       <li>Premium: {event.ramePremiumPrice}</li>
                     </ul>
                   </td>

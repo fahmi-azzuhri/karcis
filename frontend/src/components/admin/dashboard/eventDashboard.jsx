@@ -1,11 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ViewEventDashboard from "../../../views/admin/dashboard/eventDashboard";
 import axios from "axios";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 function EventDashboard() {
   const [isOpen, setIsOpen] = useState(false);
-  const [events, setEvents] = useState([]);
   const [editingEvent, setEditingEvent] = useState(null);
+  const queryClient = useQueryClient();
+  const {
+    data: events,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["events dashboard"],
+    queryFn: async () =>
+      await axios
+        .get(`${import.meta.env.VITE_API_ENDPOINT}/api/events`)
+        .then((res) => res.data),
+  });
+
+  const deleteEventMutation = useMutation({
+    mutationFn: async (id) => {
+      await axios.delete(
+        `${import.meta.env.VITE_API_ENDPOINT}/api/events/${id}`
+      );
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["events dashboard"]);
+    },
+    onError: (error) => {
+      console.error("Error deleting event:", error);
+    },
+  });
+
+  const deleteEvents = (id) => {
+    deleteEventMutation.mutate(id);
+  };
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -15,38 +45,19 @@ function EventDashboard() {
   };
   const handleEventAdded = () => {
     setIsOpen(false);
-    fetchEvents();
   };
   const handleEditEvent = (event) => {
     setEditingEvent(event);
     setIsOpen(true);
   };
 
-  const fetchEvents = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_ENDPOINT}/api/events`
-      );
-      setEvents(response.data);
-    } catch (error) {
-      console.error("Error fetching events:", error);
-    }
-  };
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  const deleteEvents = async (id) => {
-    try {
-      await axios.delete(
-        `${import.meta.env.VITE_API_ENDPOINT}/api/events/${id}`
-      );
-      setEvents((prevEvents) => prevEvents.filter((event) => event.id !== id));
-    } catch (error) {
-      console.error("Error delete events:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchEvents();
-  }, []);
+  if (error) {
+    return <div>Error fetching events: {error.message}</div>;
+  }
 
   return (
     <ViewEventDashboard
