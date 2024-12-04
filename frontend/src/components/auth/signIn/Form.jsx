@@ -3,36 +3,43 @@ import ViewForm from "../../../views/auth/signIn/Form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useMutation } from "@tanstack/react-query";
 function Form(props) {
   const { handleRegister } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const isValid = email && password;
   const navigate = useNavigate();
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
+
+  const loginMutation = useMutation({
+    mutationFn: async ({ email, password }) => {
       const response = await axios.post(
         `${import.meta.env.VITE_API_ENDPOINT}/auth/signin`,
         {
-          email: email,
-          password: password,
+          email,
+          password,
         }
       );
-
-      const { token, firstname, role } = response.data;
+      return response.data;
+    },
+    onSuccess: (data) => {
+      const { token, username, role } = data;
       Cookies.set("token", token);
-      Cookies.set("firstname", firstname);
+      Cookies.set("username", username);
       Cookies.set("role", role);
-      if (role === "user") {
-        navigate("/");
-      } else {
-        navigate("/admin/dashboard/home");
-      }
+
+      navigate(role === "user" ? "/" : "/admin/dashboard/home");
+
       window.location.reload();
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
+    },
+    onError: (error) => {
+      console.log("Login failed", error);
+    },
+  });
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (isValid) {
+      loginMutation.mutate({ email, password });
     }
   };
 
