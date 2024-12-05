@@ -22,18 +22,34 @@ function AddEventModal({ onClose, onEventAdded, editingEvent }) {
 
   const handleInputChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
   const handleFileChange = (e) => setImage(e.target.files[0]);
 
   useEffect(() => {
     if (editingEvent) {
-      setFormData(editingEvent);
+      setFormData({
+        ...editingEvent,
+        title: editingEvent.title || "",
+        location: editingEvent.location || "",
+        date: editingEvent.date || "",
+        duration: editingEvent.duration || "",
+        audience: editingEvent.audience || "",
+        attention: editingEvent.attention || "",
+        description: editingEvent.description || "",
+        vipPrice: editingEvent.vipPrice || "",
+        vvipPrice: editingEvent.vvipPrice || "",
+        ngedatePrice: editingEvent.ngedatePrice || "",
+        ngedatePremiumPrice: editingEvent.ngedatePremiumPrice || "",
+        ramePrice: editingEvent.ramePrice || "",
+        ramePremiumPrice: editingEvent.ramePremiumPrice || "",
+      });
+      setImage(null);
     } else {
       setFormData({
         title: "",
         location: "",
         date: "",
-        startTime: "",
-        endTime: "",
+        duration: "",
         audience: "",
         attention: "",
         description: "",
@@ -61,21 +77,18 @@ function AddEventModal({ onClose, onEventAdded, editingEvent }) {
           data,
           { headers: { "Content-Type": "multipart/form-data" } }
         );
-        onEventAdded();
-        onClose();
       } else {
         await axios.post(
           `${import.meta.env.VITE_API_ENDPOINT}/api/events`,
           data,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
+          { headers: { "Content-Type": "multipart/form-data" } }
         );
-        onEventAdded();
-        onClose();
       }
+      onEventAdded();
+      onClose();
     } catch (error) {
-      console.error("Failed to add event", error);
+      console.error("Failed to submit event:", error);
+      alert("An error occurred while submitting the event. Please try again.");
     }
   };
 
