@@ -28,7 +28,6 @@ function AddEventModal({ onClose, onEventAdded, editingEvent }) {
   useEffect(() => {
     if (editingEvent) {
       setFormData({
-        ...editingEvent,
         title: editingEvent.title || "",
         location: editingEvent.location || "",
         date: editingEvent.date || "",
@@ -43,8 +42,8 @@ function AddEventModal({ onClose, onEventAdded, editingEvent }) {
         ramePrice: editingEvent.ramePrice || "",
         ramePremiumPrice: editingEvent.ramePremiumPrice || "",
       });
-      setImage(null);
     } else {
+      // Reset form ketika tidak ada event yang sedang di-edit
       setFormData({
         title: "",
         location: "",
@@ -60,8 +59,8 @@ function AddEventModal({ onClose, onEventAdded, editingEvent }) {
         ramePrice: "",
         ramePremiumPrice: "",
       });
-      setImage(null);
     }
+    setImage(null); // Reset image
   }, [editingEvent]);
 
   const handleSubmit = async (e) => {
