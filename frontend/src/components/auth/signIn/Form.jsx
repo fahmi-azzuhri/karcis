@@ -23,9 +23,9 @@ function Form(props) {
       return response.data;
     },
     onSuccess: (data) => {
-      const { token, username, role } = data;
+      const { token, firstname, role } = data;
       Cookies.set("token", token);
-      Cookies.set("username", username);
+      Cookies.set("firstname", firstname);
       Cookies.set("role", role);
 
       navigate(role === "user" ? "/" : "/admin/dashboard/home");
