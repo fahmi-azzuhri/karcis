@@ -4,7 +4,7 @@ import ViewEventModal from "../../../views/admin/eventModal";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 function AddEventModal({ onClose, onEventAdded, editingEvent }) {
-  const queryClient = useQueryClient;
+  const queryClient = useQueryClient();
   const [formData, setFormData] = useState({
     title: "",
     location: "",
@@ -36,7 +36,7 @@ function AddEventModal({ onClose, onEventAdded, editingEvent }) {
       if (editingEvent) {
         return axios.put(
           `${import.meta.env.VITE_API_ENDPOINT}/api/events/${editingEvent.id}`,
-          data,
+          formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
           }
@@ -44,7 +44,7 @@ function AddEventModal({ onClose, onEventAdded, editingEvent }) {
       } else {
         return axios.post(
           `${import.meta.env.VITE_API_ENDPOINT}/api/events`,
-          data,
+          formData,
           {
             headers: { "Content-Type": "multipart/form-data" },
           }
