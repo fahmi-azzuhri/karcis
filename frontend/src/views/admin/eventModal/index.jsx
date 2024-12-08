@@ -7,7 +7,6 @@ function ViewEventModal(props) {
     handleInputChange,
     handleFileChange,
     handleCloseModal,
-    editingEvent,
   } = props;
 
   return (
@@ -36,8 +35,6 @@ function ViewEventModal(props) {
             onChange={handleInputChange}
             className="w-full p-2 mb-3 border rounded-md"
           />
-
-          {/* Time Duration */}
           <div className="flex space-x-3 mb-3">
             <input
               name="startTime"
