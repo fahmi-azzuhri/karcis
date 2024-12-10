@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int    @id @default(autoincrement())
+  firstname String
+  lastname  String
+  email     String @unique
+  password  String
+  role      String @default("user") // "user" or "admin"
+}
+
+model Event {
+  id                  Int      @id @default(autoincrement())
+  title               String
+  location            String
+  date                DateTime
+  startTime           DateTime
+  endTime             DateTime
+  audience            String
+  attention           String
+  description         String
+  vipPrice            Float
+  vvipPrice           Float
+  ngedatePrice        Float
+  ngedatePremiumPrice Float
+  ramePrice           Float
+  ramePremiumPrice    Float
+  imageUrl            String
+}
+
+model Concert {
+  id                  Int      @id @default(autoincrement())
+  title               String
+  location            String
+  date                DateTime
+  startTime           DateTime
+  endTime             DateTime
+  audience            String
+  attention           String
+  description         String
+  vipPrice            Float
+  vvipPrice           Float
+  ngedatePrice        Float
+  ngedatePremiumPrice Float
+  ramePrice           Float
+  ramePremiumPrice    Float
+  imageUrl            String
+}
