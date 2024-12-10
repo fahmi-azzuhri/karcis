@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import eventRoutes from "./routes/eventRoutes.js";
+import concertRoutes from "./routes/concertRoutes.js";
 import { generateAdminAccount } from "./services/adminService.js";
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(
 app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/api", eventRoutes);
+app.use("/api", concertRoutes);
 app.use("/uploads", express.static("uploads"));
 
 // Generate an admin account on server start

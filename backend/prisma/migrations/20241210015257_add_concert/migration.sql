@@ -1,10 +1,11 @@
 -- CreateTable
-CREATE TABLE `Event` (
+CREATE TABLE `Concert` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
     `location` VARCHAR(191) NOT NULL,
     `date` DATETIME(3) NOT NULL,
-    `duration` VARCHAR(191) NOT NULL,
+    `startTime` DATETIME(3) NOT NULL,
+    `endTime` DATETIME(3) NOT NULL,
     `audience` VARCHAR(191) NOT NULL,
     `attention` VARCHAR(191) NOT NULL,
     `description` VARCHAR(191) NOT NULL,
