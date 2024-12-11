@@ -10,6 +10,7 @@ const Sidebar = () => {
   const location = useLocation();
   const isActiveHome = location.pathname === "/admin/dashboard/home";
   const isActiveEvent = location.pathname === "/admin/dashboard/events";
+  const isActiveConcert = location.pathname === "/admin/dashboard/concerts";
   const handleSignout = () => {
     Cookies.remove("token");
     Cookies.remove("firstname");
@@ -22,6 +23,7 @@ const Sidebar = () => {
       handleSignout={handleSignout}
       isActiveEvent={isActiveEvent}
       isActiveHome={isActiveHome}
+      isActiveConcert={isActiveConcert}
       HiHome={HiHome}
       MdEvent={MdEvent}
       CiLogout={CiLogout}
