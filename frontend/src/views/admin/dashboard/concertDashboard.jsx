@@ -1,17 +1,24 @@
 import React from "react";
 import ReadMore from "../../../views/admin/dashboard/readMore";
+import AddConcertModal from "../../../components/admin/concertModal";
 function ViewConcertDashboard(props) {
-  const { concerts } = props;
+  const {
+    concerts,
+    isOpen,
+    handleConcertAdded,
+    handleOpenModal,
+    handleCloseModal,
+  } = props;
   return (
     <div className="flex min-h-screen bg-gray-100">
       <main className="flex-1 p-4 overflow-hidden">
         <div className="flex justify-end items-center mb-4 sm:mb-6">
-          {/* <button
-        onClick={handleOpenModal}
-        className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base"
-      >
-        + Add Event
-      </button> */}
+          <button
+            onClick={handleOpenModal}
+            className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base"
+          >
+            + Add Event
+          </button>
         </div>
 
         {/* Wrapper tabel responsif */}
@@ -52,7 +59,7 @@ function ViewConcertDashboard(props) {
                   <td className="p-2 sm:p-3">
                     <img
                       src={`http://localhost:3000${concert.imageUrl}`}
-                      alt={event.title}
+                      alt={concert.title}
                       className="w-full h-20 object-cover rounded"
                     />
                   </td>
@@ -118,6 +125,12 @@ function ViewConcertDashboard(props) {
           </table>
         </div>
       </main>
+      {isOpen && (
+        <AddConcertModal
+          handleCloseModal={handleCloseModal}
+          handleConcertAdded={handleConcertAdded}
+        />
+      )}
     </div>
   );
 }
