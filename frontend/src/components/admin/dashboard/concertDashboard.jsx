@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import ViewConcertDashboard from "../../../views/admin/dashboard/concertDashboard";
 function ConcertDashboard() {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+  const handleConcertAdded = () => {
+    setIsOpen(false);
+  };
   const {
     data: concerts,
     isFetching,
@@ -22,7 +32,15 @@ function ConcertDashboard() {
   if (error) {
     return <div>Error fetching concerts : {error.message}</div>;
   }
-  return <ViewConcertDashboard concerts={concerts} />;
+  return (
+    <ViewConcertDashboard
+      concerts={concerts}
+      isOpen={isOpen}
+      handleCloseModal={handleCloseModal}
+      handleConcertAdded={handleConcertAdded}
+      handleOpenModal={handleOpenModal}
+    />
+  );
 }
 
 export default ConcertDashboard;
