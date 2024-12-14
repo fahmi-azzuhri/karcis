@@ -3,151 +3,192 @@ import upload from "../config/multer.js";
 import prisma from "../config/prisma.js";
 import path from "path";
 import fs from "fs";
-
 const router = express.Router();
 
-// POST: Create a new concert
+//POST: Create a new event
 router.post("/concerts", upload.single("image"), async (req, res) => {
   try {
     const {
-      name,
-      artist,
+      title,
       location,
       date,
       startTime,
       endTime,
-      ticketPrice,
+      audience,
+      attention,
       description,
+      vipPrice,
+      vvipPrice,
+      ngedatePrice,
+      ngedatePremiumPrice,
+      ramePrice,
+      ramePremiumPrice,
     } = req.body;
+
     const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
-    const newConcert = await prisma.concert.create({
+    const newEvent = await prisma.concert.create({
       data: {
-        name,
-        artist,
+        title,
         location,
         date: new Date(date),
         startTime: new Date(`${date}T${startTime}:00`),
         endTime: new Date(`${date}T${endTime}:00`),
-        ticketPrice: parseFloat(ticketPrice),
+        audience,
+        attention,
         description,
+        vipPrice: parseFloat(vipPrice),
+        vvipPrice: parseFloat(vvipPrice),
+        ngedatePrice: parseFloat(ngedatePrice),
+        ngedatePremiumPrice: parseFloat(ngedatePremiumPrice),
+        ramePrice: parseFloat(ramePrice),
+        ramePremiumPrice: parseFloat(ramePremiumPrice),
         imageUrl,
       },
     });
 
-    res.status(201).json(newConcert);
+    res.status(201).json(newEvent);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// GET: Retrieve all concerts
+// GET: Retrieve all events
 router.get("/concerts", async (req, res) => {
   try {
-    const concerts = await prisma.concert.findMany();
-    res.status(200).json(concerts);
+    const events = await prisma.concert.findMany();
+    res.status(200).json(events);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// GET: Retrieve a specific concert by ID
+// GET: Retrieve a specific event by ID
 router.get("/concerts/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const concert = await prisma.concert.findUnique({
+    const event = await prisma.concert.findUnique({
       where: { id: parseInt(id, 10) },
     });
 
-    if (!concert) {
-      return res.status(404).json({ error: "Concert not found" });
+    if (!event) {
+      return res.status(404).json({ error: "Event not found" });
     }
 
-    res.status(200).json(concert);
+    res.status(200).json(event);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// PUT: Update a concert by ID
+// PUT: Update an event by ID
 router.put("/concerts/:id", upload.single("image"), async (req, res) => {
   try {
     const { id } = req.params;
     const {
-      name,
-      artist,
+      title,
       location,
       date,
       startTime,
       endTime,
-      ticketPrice,
+      audience,
+      attention,
       description,
+      vipPrice,
+      vvipPrice,
+      ngedatePrice,
+      ngedatePremiumPrice,
+      ramePrice,
+      ramePremiumPrice,
     } = req.body;
+
     const imageUrl = req.file ? `/uploads/${req.file.filename}` : undefined;
 
-    const updatedConcert = await prisma.concert.update({
+    const updatedEvent = await prisma.concert.update({
       where: { id: parseInt(id, 10) },
       data: {
-        name,
-        artist,
+        title,
         location,
         date: date ? new Date(date) : undefined,
         startTime: startTime ? new Date(`${date}T${startTime}:00`) : undefined,
         endTime: endTime ? new Date(`${date}T${endTime}:00`) : undefined,
-        ticketPrice: ticketPrice ? parseFloat(ticketPrice) : undefined,
+        audience,
+        attention,
         description,
+        vipPrice: vipPrice ? parseFloat(vipPrice) : undefined,
+        vvipPrice: vvipPrice ? parseFloat(vvipPrice) : undefined,
+        ngedatePrice: ngedatePrice ? parseFloat(ngedatePrice) : undefined,
+        ngedatePremiumPrice: ngedatePremiumPrice
+          ? parseFloat(ngedatePremiumPrice)
+          : undefined,
+        ramePrice: ramePrice ? parseFloat(ramePrice) : undefined,
+        ramePremiumPrice: ramePremiumPrice
+          ? parseFloat(ramePremiumPrice)
+          : undefined,
         imageUrl,
       },
     });
 
-    res.status(200).json(updatedConcert);
+    res.status(200).json(updatedEvent);
   } catch (error) {
     if (error.code === "P2025") {
-      return res.status(404).json({ error: "Concert not found" });
+      return res.status(404).json({ error: "Event not found" });
     }
     res.status(500).json({ error: error.message });
   }
 });
 
-// DELETE: Delete a concert by ID
+// DELETE: Delete an event by ID
 router.delete("/concerts/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const concert = await prisma.concert.findUnique({
+    // Cari event berdasarkan ID
+    const event = await prisma.concert.findUnique({
       where: { id: parseInt(id, 10) },
     });
 
-    if (!concert) {
-      return res.status(404).json({ error: "Concert not found" });
+    if (!event) {
+      return res.status(404).json({ error: "Event not found" });
     }
 
-    if (concert.imageUrl) {
+    // Jika event memiliki gambar
+    if (event.imageUrl) {
       const imagePath = path.join(
         process.cwd(),
         "uploads",
-        path.basename(concert.imageUrl)
+        path.basename(event.imageUrl)
       );
 
+      // Log untuk debug
+      console.log(`Attempting to delete: ${imagePath}`);
+
+      // Cek apakah file ada sebelum dihapus
       fs.access(imagePath, fs.constants.F_OK, (err) => {
-        if (!err) {
+        if (err) {
+          console.error(`File not found: ${imagePath}`);
+        } else {
+          // Hapus file
           fs.unlink(imagePath, (unlinkErr) => {
             if (unlinkErr) {
               console.error(`Error deleting file: ${imagePath}`, unlinkErr);
+            } else {
+              console.log(`File deleted: ${imagePath}`);
             }
           });
         }
       });
     }
 
+    // Hapus data event dari database
     await prisma.concert.delete({
       where: { id: parseInt(id, 10) },
     });
 
-    res.status(200).json({ message: "Concert deleted successfully" });
+    res.status(200).json({ message: "concert deleted successfully" });
   } catch (error) {
     if (error.code === "P2025") {
-      return res.status(404).json({ error: "Concert not found" });
+      return res.status(404).json({ error: "Event not found" });
     }
     res.status(500).json({ error: error.message });
   }
