@@ -17,7 +17,7 @@ function ViewConcertDashboard(props) {
             onClick={handleOpenModal}
             className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base"
           >
-            + Add Event
+            + Add Concert
           </button>
         </div>
 
