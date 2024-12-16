@@ -8,6 +8,7 @@ function ViewConcertDashboard(props) {
     handleConcertAdded,
     handleOpenModal,
     handleCloseModal,
+    deleteConcert,
   } = props;
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -111,7 +112,7 @@ function ViewConcertDashboard(props) {
                       </li>
                       <li>
                         <button
-                          // onClick={() => deleteEvents(concert.id)}
+                          onClick={() => deleteConcert(concert.id)}
                           className="text-white hover:bg-red-600 py-2 px-4 rounded-md bg-red-400"
                         >
                           Delete

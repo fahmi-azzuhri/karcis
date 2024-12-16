@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import ViewConcertDashboard from "../../../views/admin/dashboard/concertDashboard";
 function ConcertDashboard() {
   const [isOpen, setIsOpen] = useState(false);
+  const queryClient = useQueryClient();
   const handleOpenModal = () => {
     console.log("open modal");
     setIsOpen(true);
@@ -27,6 +28,24 @@ function ConcertDashboard() {
         .then((res) => res.data),
   });
 
+  const deleteConcertMutation = useMutation({
+    mutationFn: async (id) => {
+      await axios.delete(
+        `${import.meta.env.VITE_API_ENDPOINT}/api/concerts/${id}`
+      );
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["delete concert dashboard"]);
+    },
+    onError: (error) => {
+      console.error("Error deleting concert:", error);
+    },
+  });
+
+  const deleteConcert = (id) => {
+    deleteConcertMutation.mutate(id);
+  };
+
   if (isFetching || isPending) {
     return <div>Loading...</div>;
   }
@@ -40,6 +59,7 @@ function ConcertDashboard() {
       handleCloseModal={handleCloseModal}
       handleConcertAdded={handleConcertAdded}
       handleOpenModal={handleOpenModal}
+      deleteConcert={deleteConcert}
     />
   );
 }
