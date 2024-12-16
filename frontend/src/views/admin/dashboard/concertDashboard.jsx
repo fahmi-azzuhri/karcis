@@ -55,7 +55,7 @@ function ViewConcertDashboard(props) {
             </thead>
             <tbody>
               {concerts.map((concert) => (
-                <tr className="border-b hover:bg-gray-100">
+                <tr key={concert.id} className="border-b hover:bg-gray-100">
                   <td className="p-2 sm:p-3">
                     <img
                       src={`http://localhost:3000${concert.imageUrl}`}

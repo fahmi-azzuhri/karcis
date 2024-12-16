@@ -6,6 +6,7 @@ function ViewConcertModal(props) {
     handleSubmit,
     handleInputChange,
     handleFileChange,
+    formData,
   } = props;
   return (
     <div className="modal fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-6">
@@ -16,7 +17,7 @@ function ViewConcertModal(props) {
             name="title"
             value={formData.title}
             onChange={handleInputChange}
-            placeholder="Event Title"
+            placeholder="Concert Title"
             className="w-full p-2 mb-3 border rounded-md"
           />
           <input

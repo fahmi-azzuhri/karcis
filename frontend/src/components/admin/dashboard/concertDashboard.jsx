@@ -5,6 +5,7 @@ import ViewConcertDashboard from "../../../views/admin/dashboard/concertDashboar
 function ConcertDashboard() {
   const [isOpen, setIsOpen] = useState(false);
   const handleOpenModal = () => {
+    console.log("open modal");
     setIsOpen(true);
   };
   const handleCloseModal = () => {
