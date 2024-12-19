@@ -59,3 +59,22 @@ model Concert {
   ramePremiumPrice    Float
   imageUrl            String
 }
+
+model Art {
+  id                  Int      @id @default(autoincrement())
+  title               String
+  location            String
+  date                DateTime
+  startTime           DateTime
+  endTime             DateTime
+  audience            String
+  attention           String
+  description         String
+  vipPrice            Float
+  vvipPrice           Float
+  ngedatePrice        Float
+  ngedatePremiumPrice Float
+  ramePrice           Float
+  ramePremiumPrice    Float
+  imageUrl            String
+}
