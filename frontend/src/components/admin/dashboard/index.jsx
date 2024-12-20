@@ -5,11 +5,13 @@ import { useLocation } from "react-router-dom";
 import HomeDashboard from "./homeDashboard";
 import EventDashboard from "./eventDashboard";
 import ConcertDashboard from "./concertDashboard";
+import ArtDashboard from "./artDashboard";
 
 const Dashboard = () => {
   const isHome = useLocation().pathname === "/admin/dashboard/home";
   const isEvent = useLocation().pathname === "/admin/dashboard/events";
   const isConcert = useLocation().pathname === "/admin/dashboard/concerts";
+  const isArt = useLocation().pathname === "/admin/dashboard/arts";
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
@@ -24,7 +26,9 @@ const Dashboard = () => {
               ? "Event"
               : isConcert
               ? "Concert"
-              : "Concert"
+              : isArt
+              ? "Art"
+              : "Art"
           }
         />
         {isHome ? (
@@ -33,6 +37,8 @@ const Dashboard = () => {
           <EventDashboard />
         ) : isConcert ? (
           <ConcertDashboard />
+        ) : isArt ? (
+          <ArtDashboard />
         ) : null}
       </div>
     </div>

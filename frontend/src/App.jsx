@@ -57,7 +57,8 @@ function App() {
     location.pathname === "/admin/dashboard/home" ||
     location.pathname === "/admin/dashboard/events" ||
     location.pathname === "/admin/dashboard/price" ||
-    location.pathname === "/admin/dashboard/concerts";
+    location.pathname === "/admin/dashboard/concerts" ||
+    location.pathname === "/admin/dashboard/arts";
 
   return (
     <>

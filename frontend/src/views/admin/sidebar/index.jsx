@@ -6,6 +6,7 @@ function ViewSidebar(props) {
     isActiveHome,
     isActiveEvent,
     isActiveConcert,
+    isActiveArt,
     HiHome,
     MdEvent,
     CiLogout,
@@ -51,6 +52,17 @@ function ViewSidebar(props) {
           >
             <MdEvent />
             Concert
+          </button>
+        </li>
+        <li className="font-medium">
+          <button
+            onClick={() => navigate("/admin/dashboard/arts")}
+            className={`flex items-center p-3 text-gray-700 hover:bg-blueDefault hover:text-white rounded-lg w-full gap-2 ${
+              isActiveArt && "bg-blueDefault text-white"
+            }`}
+          >
+            <MdEvent />
+            Art
           </button>
         </li>
 
