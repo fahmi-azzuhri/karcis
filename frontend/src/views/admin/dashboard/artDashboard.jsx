@@ -1,12 +1,14 @@
 import React from "react";
+import AddArtModal from "../../../components/admin/artModal";
 
-function ViewArtDashboard() {
+function ViewArtDashboard(props) {
+  const { isOpen, handleCloseModal, handleOpenModal, handleArtAdded } = props;
   return (
     <div className="flex min-h-screen bg-gray-100">
       <main className="flex-1 p-4 overflow-hidden">
         <div className="flex justify-end items-center mb-4 sm:mb-6">
           <button
-            // onClick={handleOpenModal}
+            onClick={handleOpenModal}
             className="bg-blue-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-md text-sm sm:text-base"
           >
             + Add Event
@@ -118,13 +120,12 @@ function ViewArtDashboard() {
         </div>
       </main>
 
-      {/* {isOpen && (
-      <AddEventModal
-        onClose={handleCloseModal}
-        onEventAdded={handleEventAdded}
-        editingEvent={editingEvent}
-      />
-    )} */}
+      {isOpen && (
+        <AddArtModal
+          handleCloseModal={handleCloseModal}
+          handleArtAdded={handleArtAdded}
+        />
+      )}
     </div>
   );
 }
