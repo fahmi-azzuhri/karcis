@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ViewArtDashboard from "../../../views/admin/dashboard/artDashboard";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 function ArtDashboard() {
@@ -15,6 +15,8 @@ function ArtDashboard() {
     setIsOpen(false);
   };
 
+  const queryClient = useQueryClient();
+
   const {
     data: arts,
     isPending,
@@ -27,6 +29,22 @@ function ArtDashboard() {
         .get(`${import.meta.env.VITE_API_ENDPOINT}/api/arts`)
         .then((response) => response.data),
   });
+
+  const deleteArtMutation = useMutation({
+    mutationFn: async (id) => {
+      await axios.delete(`${import.meta.env.VITE_API_ENDPOINT}/api/arts/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["delete arts dashboard"]);
+    },
+    onError: (error) => {
+      console.error("Error deleting art:", error);
+    },
+  });
+
+  const deleteArt = (id) => {
+    deleteArtMutation.mutate(id);
+  };
 
   if (isPending || isFetching) {
     return <div>Loading...</div>;
@@ -42,6 +60,7 @@ function ArtDashboard() {
         handleCloseModal={handleCloseModal}
         handleOpenModal={handleOpenModal}
         handleArtAdded={handleArtAdded}
+        deleteArt={deleteArt}
       />
     </div>
   );

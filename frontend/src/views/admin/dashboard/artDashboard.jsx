@@ -2,8 +2,14 @@ import React from "react";
 import AddArtModal from "../../../components/admin/artModal";
 import ReadMore from "./readMore";
 function ViewArtDashboard(props) {
-  const { isOpen, handleCloseModal, handleOpenModal, handleArtAdded, arts } =
-    props;
+  const {
+    isOpen,
+    handleCloseModal,
+    handleOpenModal,
+    handleArtAdded,
+    arts,
+    deleteArt,
+  } = props;
   return (
     <div className="flex min-h-screen bg-gray-100">
       <main className="flex-1 p-4 overflow-hidden">
@@ -50,7 +56,7 @@ function ViewArtDashboard(props) {
             </thead>
             <tbody>
               {arts.map((art) => (
-                <tr className="border-b hover:bg-gray-100">
+                <tr key={art._id} className="border-b hover:bg-gray-100">
                   <td className="p-2 sm:p-3">
                     <img
                       src={`http://localhost:3000${art.imageUrl}`}
@@ -106,7 +112,7 @@ function ViewArtDashboard(props) {
                       </li>
                       <li>
                         <button
-                          // onClick={() => deleteEvents(event.id)}
+                          onClick={() => deleteArt(art.id)}
                           className="text-white hover:bg-red-600 py-2 px-4 rounded-md bg-red-400"
                         >
                           Delete
