@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ViewArtDashboard from "../../../views/admin/dashboard/artDashboard";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 function ArtDashboard() {
@@ -14,6 +14,8 @@ function ArtDashboard() {
   const handleArtAdded = () => {
     setIsOpen(false);
   };
+
+  const queryClient = useQueryClient();
 
   const {
     data: arts,
