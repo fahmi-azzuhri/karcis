@@ -6,13 +6,26 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import SkeletonLoading from "../../../../views/skeleton";
+import dayjs from "dayjs";
 function DetailEvent() {
   const { id } = useParams();
   const location = useLocation();
   const type = location.pathname.split("/")[1];
   const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    return dayjs(dateString).format("DD/MM/YYYY");
+  };
+  const formatTime = (time) => {
+    return dayjs(time).format("HH:mm");
+  };
+  const calculateDuration = (startTime, endTime) => {
+    const start = dayjs(startTime);
+    const end = dayjs(endTime);
+    const duration = end.diff(start, "minute");
+
+    const hour = Math.floor(duration / 60);
+    const minute = duration % 60;
+
+    return `${hour}h ${minute}m`;
   };
 
   const { data, isFetching, isPending, error } = useQuery({
@@ -39,6 +52,8 @@ function DetailEvent() {
       IoWarning={IoWarning}
       data={data}
       formatDate={formatDate}
+      formatTime={formatTime}
+      calculateDuration={calculateDuration}
     />
   );
 }
