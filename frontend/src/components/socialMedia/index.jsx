@@ -19,14 +19,14 @@ export function FooterSocialMedia() {
 
 export function DetailEventSocialMedia() {
   return (
-    <div className="flex space-x-4">
+    <div className="flex space-x-4 pb-4">
       <a href="#" className="border border-gray-500 rounded-full p-2">
         <FaTwitter />
       </a>
-      <a href="#">
+      <a href="#" className="border border-gray-500 rounded-full p-2">
         <FaInstagram />
       </a>
-      <a href="#">
+      <a href="#" className="border border-gray-500 rounded-full p-2">
         <FaFacebookSquare />
       </a>
     </div>

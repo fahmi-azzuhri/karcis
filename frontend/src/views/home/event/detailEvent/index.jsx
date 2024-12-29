@@ -6,8 +6,8 @@ function ViewDetailEvent(props) {
   const { data, formatDate, FaRegClock, IoPeople, IoWarning } = props;
   return (
     <div className="container mx-auto p-6 bg-gray-50">
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-        <DetailEventSocialMedia />
+      <DetailEventSocialMedia />
+      <div className="bg-transparent shadow-lg rounded-lg overflow-hidden">
         <img
           src={`${import.meta.env.VITE_API_ENDPOINT}${data.imageUrl}`}
           alt={data.title}
