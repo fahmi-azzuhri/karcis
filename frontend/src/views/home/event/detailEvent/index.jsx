@@ -39,9 +39,7 @@ function ViewDetailEvent(props) {
                 Tickets starting at
               </p>
               <p className="text-xl md:text-md sm:text-xl font-semibold text-blackDefault">
-                {data.vipPrice?.toLocaleString() || "Price not available"} -
-                {data.ramePremiumPrice?.toLocaleString() ||
-                  "Price not available"}
+                Rp {data.vipPrice?.toLocaleString() || "Price not available"}
               </p>
               <button className="mt-4 bg-blueDefault text-white px-4 py-2 rounded w-full">
                 Buy Tickets

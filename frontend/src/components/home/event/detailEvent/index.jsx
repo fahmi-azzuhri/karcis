@@ -16,7 +16,7 @@ function DetailEvent() {
   };
 
   const { data, isFetching, isPending, error } = useQuery({
-    queryKey: ["detail event", id],
+    queryKey: [type, id],
     queryFn: async () =>
       await axios
         .get(`${import.meta.env.VITE_API_ENDPOINT}/api/${type}/${id}`)
