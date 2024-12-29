@@ -36,6 +36,8 @@ function AppRoutes() {
       />
       <Route path="/events/ticket-info" element={<TicketInfo />} />
       <Route path="/events/:id" element={<DetailEvent />} />
+      <Route path="/arts/:id" element={<DetailEvent />} />
+      <Route path="/concerts/:id" element={<DetailEvent />} />
       <Route
         path="/event/checkout"
         element={
