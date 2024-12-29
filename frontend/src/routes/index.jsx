@@ -34,8 +34,8 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       />
-      <Route path="/event/ticket-info" element={<TicketInfo />} />
-      <Route path="/event/detail-event" element={<DetailEvent />} />
+      <Route path="/events/ticket-info" element={<TicketInfo />} />
+      <Route path="/events/:id" element={<DetailEvent />} />
       <Route
         path="/event/checkout"
         element={
