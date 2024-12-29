@@ -3,7 +3,15 @@ import { DetailEventSocialMedia } from "../../../../components/socialMedia";
 import Accrdions from "../../../../components/home/event/detailEvent/Accrdions";
 
 function ViewDetailEvent(props) {
-  const { data, formatDate, FaRegClock, IoPeople, IoWarning } = props;
+  const {
+    data,
+    formatDate,
+    formatTime,
+    calculateDuration,
+    FaRegClock,
+    IoPeople,
+    IoWarning,
+  } = props;
   return (
     <div className="container mx-auto p-6 bg-gray-50">
       <DetailEventSocialMedia />
@@ -56,8 +64,14 @@ function ViewDetailEvent(props) {
               <FaRegClock />
               <h3 className="text-xl font-semibold mt-1">Duration</h3>
             </div>
-            <p className="text-gray-600">20:00 - 21:56 WIB</p>
-            <p className="text-gray-600">1 hour 56 minutes</p>
+            <div className="flex flex-col">
+              <p className="text-gray-600">
+                {formatTime(data.startTime)} - {formatTime(data.endTime)}
+              </p>
+              <p className="text-gray-600">
+                {calculateDuration(data.startTime, data.endTime)}
+              </p>
+            </div>
           </div>
           <div className="p-6 ">
             <div className="flex flex-row space-x-2 items-center">
