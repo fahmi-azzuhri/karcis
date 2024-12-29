@@ -3,36 +3,33 @@ import { DetailEventSocialMedia } from "../../../../components/socialMedia";
 import Accrdions from "../../../../components/home/event/detailEvent/Accrdions";
 
 function ViewDetailEvent(props) {
-  const { FaRegClock, IoPeople, IoWarning } = props;
+  const { data, formatDate, FaRegClock, IoPeople, IoWarning } = props;
   return (
     <div className="container mx-auto p-6 bg-gray-50">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         <DetailEventSocialMedia />
         <img
-          src="https://via.placeholder.com/1200x400"
-          alt="Drive In Senja Event Banner"
+          src={`${import.meta.env.VITE_API_ENDPOINT}${data.imageUrl}`}
+          alt={data.title}
           className="w-full"
         />
       </div>
       <div className="mt-6">
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold">
-              Drive In Senja: Back to The Future
-            </h1>
+            <h1 className="text-3xl font-bold">{data.title}</h1>
             <p className="text-gray-500 mt-2">
-              Parkiran Utama Mall @ Alam Sutera
+              <span>📍</span>
+              {data.location}
             </p>
             <p className="text-gray-500 mt-1">
               <span role="img" aria-label="calendar">
                 📅
               </span>
-              September 22, 2021, 20:00 - 21:56 WIB
+              {formatDate(data.date)}
             </p>
             <p className="text-gray-500 mt-1 sm:w-1/2 w-full">
-              Marty travels back in time using an eccentric scientist’s time
-              machine. However, he must make his high-school-aged parents fall
-              in love in order to return to the present.
+              {data.description}
             </p>
           </div>
 
@@ -42,7 +39,9 @@ function ViewDetailEvent(props) {
                 Tickets starting at
               </p>
               <p className="text-xl md:text-md sm:text-xl font-semibold text-blackDefault">
-                Rp. 212.000
+                {data.vipPrice?.toLocaleString() || "Price not available"} -
+                {data.ramePremiumPrice?.toLocaleString() ||
+                  "Price not available"}
               </p>
               <button className="mt-4 bg-blueDefault text-white px-4 py-2 rounded w-full">
                 Buy Tickets
@@ -67,31 +66,20 @@ function ViewDetailEvent(props) {
               <IoPeople />
               <h3 className="text-xl font-semibold mt-1">Audience</h3>
             </div>
-            <p className="text-gray-600">
-              This movie is suitable for audience aged 12 and above
-            </p>
+            <p className="text-gray-600">{data.audience}</p>
           </div>
           <div className="p-6">
             <div className="flex flex-row space-x-2 items-center">
               <IoWarning />
               <h3 className="text-xl font-semibold mt-1">Attention</h3>
             </div>
-            <p className="text-gray-600">
-              Face mask and social distancing are mandatory outside the car.
-            </p>
+            <p className="text-gray-600">{data.attention}</p>
           </div>
         </div>
       </div>
       <div className="mt-8 p-6">
         <h3 className="text-xl font-semibold">Description</h3>
-        <p className="text-gray-600 mt-4">
-          Drive-In Senja memberikan retro drive-in experience yang dikemas
-          secara modern. Penggunaan transmisi radio kit, mengintegrasikan suara
-          film ke dalam mobil, ditambah proyektor resolusi tinggi yang
-          menyediakan pengalaman visual terbaik. Acara ini merupakan sarana yang
-          aman untuk menghabiskan waktu bersama keluarga, pasangan, maupun
-          komunitas.
-        </p>
+        <p className="text-gray-600 mt-4">{data.description}</p>
       </div>
       <Accrdions title="Terms & Conditions" desc="lorem" />
     </div>
