@@ -18,7 +18,7 @@ function BrowseArts() {
   const {
     data: arts,
     isFetching,
-    isPending,
+    isLoading,
     error,
   } = useQuery({
     queryKey: ["browse arts"],
@@ -28,7 +28,7 @@ function BrowseArts() {
         .then((res) => res.data),
   });
 
-  if (isFetching || isPending) {
+  if (isFetching || isLoading) {
     return <SkeletonLoading />;
   }
 

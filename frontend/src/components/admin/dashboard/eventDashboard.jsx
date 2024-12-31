@@ -11,6 +11,7 @@ function EventDashboard() {
     data: events,
     error,
     isLoading,
+    isFetching,
   } = useQuery({
     queryKey: ["events dashboard"],
     queryFn: async () =>
@@ -51,7 +52,7 @@ function EventDashboard() {
     setIsOpen(true);
   };
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <div>Loading...</div>;
   }
 

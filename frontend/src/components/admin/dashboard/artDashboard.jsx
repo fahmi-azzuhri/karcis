@@ -19,7 +19,7 @@ function ArtDashboard() {
 
   const {
     data: arts,
-    isPending,
+    isLoading,
     isFetching,
     error,
   } = useQuery({
@@ -46,7 +46,7 @@ function ArtDashboard() {
     deleteArtMutation.mutate(id);
   };
 
-  if (isPending || isFetching) {
+  if (isLoading || isFetching) {
     return <div>Loading...</div>;
   }
   if (error) {

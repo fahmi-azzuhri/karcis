@@ -18,7 +18,7 @@ function ConcertDashboard() {
   const {
     data: concerts,
     isFetching,
-    isPending,
+    isLoading,
     error,
   } = useQuery({
     queryKey: ["concert"],
@@ -46,7 +46,7 @@ function ConcertDashboard() {
     deleteConcertMutation.mutate(id);
   };
 
-  if (isFetching || isPending) {
+  if (isFetching || isLoading) {
     return <div>Loading...</div>;
   }
   if (error) {
