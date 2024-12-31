@@ -17,7 +17,7 @@ function BrowseConcerts() {
   const {
     data: concerts,
     isFetching,
-    isPending,
+    isLoading,
     error,
   } = useQuery({
     queryKey: ["browse concerts"],
@@ -27,7 +27,7 @@ function BrowseConcerts() {
         .then((res) => res.data),
   });
 
-  if (isFetching || isPending) {
+  if (isFetching || isLoading) {
     return <SkeletonLoading />;
   }
   if (error) {

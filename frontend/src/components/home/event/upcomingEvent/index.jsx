@@ -17,7 +17,7 @@ function UpcomingEvent() {
   const {
     data: events,
     isFetching,
-    isPending,
+    isLoading,
     error,
   } = useQuery({
     queryKey: ["upcoming events"],
@@ -25,7 +25,7 @@ function UpcomingEvent() {
       (await axios.get(`${import.meta.env.VITE_API_ENDPOINT}/api/events`)).data,
   });
 
-  if (isFetching || isPending) {
+  if (isFetching || isLoading) {
     return <SkeletonLoading />;
   }
 

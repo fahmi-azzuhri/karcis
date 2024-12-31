@@ -28,7 +28,7 @@ function DetailEvent() {
     return `${hour}h ${minute}m`;
   };
 
-  const { data, isFetching, isPending, error } = useQuery({
+  const { data, isFetching, isLoading, error } = useQuery({
     queryKey: [type, id],
     queryFn: async () =>
       await axios
@@ -36,7 +36,7 @@ function DetailEvent() {
         .then((response) => response.data),
   });
 
-  if (isFetching || isPending) {
+  if (isFetching || isLoading) {
     return <SkeletonLoading />;
   }
   if (!data || data.length === 0) {
