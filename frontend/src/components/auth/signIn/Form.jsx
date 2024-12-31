@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+
 function Form(props) {
   const { handleRegister } = props;
   const [email, setEmail] = useState("");
@@ -28,9 +30,9 @@ function Form(props) {
       Cookies.set("firstname", firstname);
       Cookies.set("role", role);
 
-      navigate(role === "user" ? "/" : "/admin/dashboard/home");
-
-      window.location.reload();
+      setTimeout(() => {
+        navigate(role === "user" ? "/" : "/admin/dashboard/home");
+      }, 2000);
     },
     onError: (error) => {
       console.log("Login failed", error);
@@ -39,7 +41,11 @@ function Form(props) {
   const handleLogin = (e) => {
     e.preventDefault();
     if (isValid) {
-      loginMutation.mutate({ email, password });
+      toast.promise(loginMutation.mutateAsync({ email, password }), {
+        loading: "Please wait ...",
+        success: "Login success",
+        error: "Login failed, password or email is incorrect",
+      });
     }
   };
 
