@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import ViewForm from "../../../views/auth/signUp/Form";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 function Form(props) {
   const { handleLogin } = props;
@@ -27,7 +28,9 @@ function Form(props) {
       return response.data;
     },
     onSuccess: () => {
-      navigate("/signin");
+      setTimeout(() => {
+        navigate("/signin");
+      }, 2000);
     },
     onError: (error) => {
       console.error("register failed", error);
@@ -36,7 +39,14 @@ function Form(props) {
   const handleSignup = async (e) => {
     e.preventDefault();
     if (isValid) {
-      registerMutation.mutate({ firstname, lastname, email, password });
+      toast.promise(
+        registerMutation.mutateAsync({ firstname, lastname, email, password }),
+        {
+          loading: "Please wait ...",
+          success: "Account created successfully",
+          error: "Register failed, please fill form completed",
+        }
+      );
     }
   };
   return (
