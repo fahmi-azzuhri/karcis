@@ -3,14 +3,18 @@ import ViewDetailEvent from "../../../../views/home/event/detailEvent";
 import { FaRegClock } from "react-icons/fa";
 import { IoPeople, IoWarning } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import SkeletonLoading from "../../../../views/skeleton";
 import dayjs from "dayjs";
+import Cookies from "js-cookie";
+
 function DetailEvent() {
   const { id } = useParams();
+  const token = Cookies.get("token");
   const location = useLocation();
   const type = location.pathname.split("/")[1];
+  const navigate = useNavigate();
   const formatDate = (dateString) => {
     return dayjs(dateString).format("DD/MM/YYYY");
   };
@@ -36,6 +40,14 @@ function DetailEvent() {
         .then((response) => response.data),
   });
 
+  const handleBuyTicket = () => {
+    if (!token) {
+      navigate("/signin");
+    } else {
+      navigate("/events/ticket-info");
+    }
+  };
+
   if (isFetching || isLoading) {
     return <SkeletonLoading />;
   }
@@ -54,6 +66,7 @@ function DetailEvent() {
       formatDate={formatDate}
       formatTime={formatTime}
       calculateDuration={calculateDuration}
+      handleBuyTicket={handleBuyTicket}
     />
   );
 }
