@@ -11,6 +11,7 @@ function ViewDetailEvent(props) {
     FaRegClock,
     IoPeople,
     IoWarning,
+    handleBuyTicket,
   } = props;
   return (
     <div className="container mx-auto p-6 bg-gray-50">
@@ -49,7 +50,10 @@ function ViewDetailEvent(props) {
               <p className="text-xl md:text-md sm:text-xl font-semibold text-blackDefault">
                 Rp {data.vipPrice?.toLocaleString() || "Price not available"}
               </p>
-              <button className="mt-4 bg-blueDefault text-white px-4 py-2 rounded w-full">
+              <button
+                onClick={handleBuyTicket}
+                className="mt-4 bg-blueDefault text-white px-4 py-2 rounded w-full"
+              >
                 Buy Tickets
               </button>
             </div>
