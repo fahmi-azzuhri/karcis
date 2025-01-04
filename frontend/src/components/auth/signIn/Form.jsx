@@ -29,7 +29,6 @@ function Form(props) {
       Cookies.set("token", token);
       Cookies.set("firstname", firstname);
       Cookies.set("role", role);
-
       setTimeout(() => {
         navigate(role === "user" ? "/" : "/admin/dashboard/home");
       }, 2000);
