@@ -20,7 +20,7 @@ function App() {
     if (firstname) {
       setFirstname(firstname);
     }
-  }, []);
+  });
   const handleSignout = () => {
     Cookies.remove("token");
     Cookies.remove("firstname");
