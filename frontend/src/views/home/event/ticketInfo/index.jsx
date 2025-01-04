@@ -19,25 +19,17 @@ function ViewTicketInfo(props) {
       </div>
       <div className="flex flex-col md:flex-row p-4 items-center">
         <img
-          src="https://example.com/movie-poster.jpg"
-          alt="Movie Poster"
+          src={`${import.meta.env.VITE_API_ENDPOINT}${tickets.imageUrl}`}
+          alt={tickets.title}
           className="w-full md:w-1/3 object-cover"
         />
         <div className="ml-4 flex flex-col justify-center">
-          <h2 className="text-2xl font-bold">
-            Drive In Senja: Back to the Future
-          </h2>
+          <h2 className="text-2xl font-bold">{tickets.title}</h2>
           <p className="mt-2 text-gray-600">
-            📅 September 27, 2024 | 🕒 20:00 - 23:15 WIB
+            📅 {tickets.date} | 🕒 20:00 - 23:15 WIB
           </p>
-          <p className="text-gray-600">
-            📍 Phinisian Theatre Mall @ Alam Sutera
-          </p>
-          <p className="mt-2 text-gray-700">
-            Nikmati film klasik futuristik dalam suasana spektakuler di tepi
-            pantai. Bawa kendaraan anda untuk pengalaman bioskop luar ruang yang
-            unik.
-          </p>
+          <p className="text-gray-600">📍 {tickets.location}</p>
+          <p className="mt-2 text-gray-700">{tickets.description}</p>
         </div>
       </div>
       <div className="bg-blueDefault text-white text-center p-4 mt-auto">
@@ -45,7 +37,7 @@ function ViewTicketInfo(props) {
       </div>
       <div className="p-4">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {tickets.map((ticket) => (
+          {tickets.options.map((ticket) => (
             <div
               key={ticket.id}
               onClick={() => setSelectedTicket(ticket.id)}
