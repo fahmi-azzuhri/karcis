@@ -8,8 +8,7 @@ import SkeletonLoading from "../../../../views/skeleton";
 const TicketInfo = () => {
   const location = useLocation();
   const type = location.pathname.split("/")[1];
-  const queryParams = new URLSearchParams(location.state);
-  const id = queryParams.get("id");
+  const { id, data: getData } = location.state;
   const [selectedTicket, setSelectedTicket] = useState(null);
   const [quantities, setQuantities] = useState({});
   const {
@@ -21,7 +20,9 @@ const TicketInfo = () => {
     queryKey: [type, id],
     queryFn: async () =>
       axios
-        .get(`${import.meta.env.VITE_API_ENDPOINT}/api/${type}/${id}`)
+        .get(
+          `${import.meta.env.VITE_API_ENDPOINT}/api/${type}/ticket-info/${id}`
+        )
         .then((response) => response.data),
   });
 
@@ -36,45 +37,6 @@ const TicketInfo = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
-  // const tickets = [
-  //   {
-  //     id: 1,
-  //     title: "Paket VIP",
-  //     description: "1 Mobil Max 6 Orang + 1 Merchandise",
-  //     price: "Rp. 371.000",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Paket VVIP",
-  //     description: "1 Mobil Max 6 Orang + 2 Merchandise",
-  //     price: "Rp. 424.000",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Paket Ngedate",
-  //     description: "1 Mobil Max 2 Orang",
-  //     price: "Rp. 272.000",
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "Paket Ngedate Premium",
-  //     description: "1 Mobil Max 2 Orang + 1 Merchandise",
-  //     price: "Rp. 256.000",
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "Paket Rame",
-  //     description: "1 Mobil Max 5 Orang",
-  //     price: "Rp. 371.000",
-  //   },
-  //   {
-  //     id: 6,
-  //     title: "Paket Rame Premium",
-  //     description: "1 Mobil Max 5 Orang + 1 Merchandise",
-  //     price: "Rp. 417.000",
-  //   },
-  // ];
 
   const handleQuantityChange = (ticketId, increment) => {
     setQuantities((prevQuantities) => {
@@ -95,6 +57,7 @@ const TicketInfo = () => {
       setSelectedTicket={setSelectedTicket}
       quantities={quantities}
       FaArrowLeft={FaArrowLeft}
+      getData={getData}
     />
   );
 };

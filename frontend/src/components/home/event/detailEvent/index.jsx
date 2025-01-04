@@ -44,7 +44,7 @@ function DetailEvent() {
     if (!token) {
       navigate("/signin");
     } else {
-      navigate(`/events/ticket-info/${id}`);
+      navigate(`/events/ticket-info/${id}`, { state: { data, id } });
     }
   };
 
