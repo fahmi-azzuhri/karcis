@@ -194,4 +194,23 @@ router.delete("/arts/:id", async (req, res) => {
   }
 });
 
+// GET: Retrieve ticket info for a specific event by ID
+router.get("/arts/ticket-info/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const art = await prisma.art.findUnique({
+      where: { id: parseInt(id, 10) },
+    });
+
+    if (!art) {
+      return res.status(404).json({ error: "Event not found" });
+    }
+
+    // Mengirim data event untuk ticket info
+    res.status(200).json(art);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 export default router;
