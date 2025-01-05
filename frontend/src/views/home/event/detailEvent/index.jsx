@@ -4,7 +4,7 @@ import Accrdions from "../../../../components/home/event/detailEvent/Accrdions";
 
 function ViewDetailEvent(props) {
   const {
-    data,
+    detail,
     formatDate,
     formatTime,
     calculateDuration,
@@ -18,27 +18,27 @@ function ViewDetailEvent(props) {
       <DetailEventSocialMedia />
       <div className="bg-transparent shadow-lg rounded-lg overflow-hidden">
         <img
-          src={`${import.meta.env.VITE_API_ENDPOINT}${data.imageUrl}`}
-          alt={data.title}
+          src={`${import.meta.env.VITE_API_ENDPOINT}${detail.imageUrl}`}
+          alt={detail.title}
           className="w-full"
         />
       </div>
       <div className="mt-6">
         <div className="flex flex-col sm:flex-row justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold">{data.title}</h1>
+            <h1 className="text-3xl font-bold">{detail.title}</h1>
             <p className="text-gray-500 mt-2">
               <span>📍</span>
-              {data.location}
+              {detail.location}
             </p>
             <p className="text-gray-500 mt-1">
               <span role="img" aria-label="calendar">
                 📅
               </span>
-              {formatDate(data.date)}
+              {formatDate(detail.date)}
             </p>
             <p className="text-gray-500 mt-1 sm:w-1/2 w-full">
-              {data.description}
+              {detail.description}
             </p>
           </div>
 
@@ -48,7 +48,7 @@ function ViewDetailEvent(props) {
                 Tickets starting at
               </p>
               <p className="text-xl md:text-md sm:text-xl font-semibold text-blackDefault">
-                Rp {data.vipPrice?.toLocaleString() || "Price not available"}
+                Rp {detail.vipPrice?.toLocaleString() || "Price not available"}
               </p>
               <button
                 onClick={handleBuyTicket}
@@ -70,10 +70,10 @@ function ViewDetailEvent(props) {
             </div>
             <div className="flex flex-col">
               <p className="text-gray-600">
-                {formatTime(data.startTime)} - {formatTime(data.endTime)}
+                {formatTime(detail.startTime)} - {formatTime(detail.endTime)}
               </p>
               <p className="text-gray-600">
-                {calculateDuration(data.startTime, data.endTime)}
+                {calculateDuration(detail.startTime, detail.endTime)}
               </p>
             </div>
           </div>
@@ -82,20 +82,20 @@ function ViewDetailEvent(props) {
               <IoPeople />
               <h3 className="text-xl font-semibold mt-1">Audience</h3>
             </div>
-            <p className="text-gray-600">{data.audience}</p>
+            <p className="text-gray-600">{detail.audience}</p>
           </div>
           <div className="p-6">
             <div className="flex flex-row space-x-2 items-center">
               <IoWarning />
               <h3 className="text-xl font-semibold mt-1">Attention</h3>
             </div>
-            <p className="text-gray-600">{data.attention}</p>
+            <p className="text-gray-600">{detail.attention}</p>
           </div>
         </div>
       </div>
       <div className="mt-8 p-6">
         <h3 className="text-xl font-semibold">Description</h3>
-        <p className="text-gray-600 mt-4">{data.description}</p>
+        <p className="text-gray-600 mt-4">{detail.description}</p>
       </div>
       <Accrdions title="Terms & Conditions" desc="lorem" />
     </div>

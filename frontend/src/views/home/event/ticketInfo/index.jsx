@@ -39,23 +39,22 @@ function ViewTicketInfo(props) {
       //ntar di fix
       {/* <div className="p-4">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {Array.isArray(tickets) && tickets.length > 0 ? (
-            tickets.map((ticket) => (
-              <div
-                key={ticket.id}
-                onClick={() => setSelectedTicket(ticket.id)}
-                className={`border p-4 rounded-lg shadow-md cursor-pointer ${
-                  selectedTicket === ticket.id
-                    ? "border-blueDefault"
-                    : "border-gray-300"
-                }`}
-              >
-                <h4 className="text-lg font-semibold">{ticket.title}</h4>
-                <p className="text-sm text-gray-600">{ticket.description}</p>
-                <p className="text-lg font-bold mt-2">{ticket.price}</p>
+          {tickets.map((ticket) => (
+            <div
+              key={ticket.id}
+              onClick={() => setSelectedTicket(ticket.id)}
+              className={`border p-4 rounded-lg shadow-md cursor-pointer ${
+                selectedTicket === ticket.id
+                  ? "border-blueDefault"
+                  : "border-gray-300"
+              }`}
+            >
+              <h4 className="text-lg font-semibold">{ticket.title}</h4>
+              <p className="text-sm text-gray-600">{ticket.description}</p>
+              <p className="text-lg font-bold mt-2">{ticket.viprice}</p>
 
-                <div className="flex items-center justify-evenly mt-4">
-                  <button
+              <div className="flex items-center justify-evenly mt-4">
+                <button
                     onClick={(e) => {
                       e.stopPropagation();
                       handleQuantityChange(ticket.id, -1);
@@ -74,11 +73,9 @@ function ViewTicketInfo(props) {
                   >
                     +
                   </button>
-                </div>
               </div>
-            ))):(
-              <p>No tickets available.</p>
-            )}
+            </div>
+          ))}
         </div>
         <button className="bg-blueDefault hover:bg-blueDarkest text-white w-full text-center p-4 my-5">
           Checkout now!
