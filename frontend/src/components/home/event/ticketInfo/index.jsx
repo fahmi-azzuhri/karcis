@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import ViewTicketInfo from "../../../../views/home/event/ticketInfo";
 import { useLocation } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import SkeletonLoading from "../../../../views/skeleton";
+
 const TicketInfo = () => {
   const location = useLocation();
   const { detail: getData } = location.state;
