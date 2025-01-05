@@ -14,7 +14,10 @@ function ViewTicketInfo(props) {
   return (
     <div className="max-w-screen-2xl mx-auto p-8 flex flex-col">
       <div className="flex flex-row gap-4 items-center">
-        <button className="text-lg border border-blueDefault rounded-lg p-2">
+        <button
+          onClick={() => window.history.back()}
+          className="text-lg border border-blueDefault rounded-lg p-2"
+        >
           <FaArrowLeft className="text-blueDefault" />
         </button>
         <h1 className="text-xl font-semibold">Ticket Options</h1>
