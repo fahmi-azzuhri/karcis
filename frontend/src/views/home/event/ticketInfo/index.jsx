@@ -9,6 +9,8 @@ function ViewTicketInfo(props) {
     quantities,
     FaArrowLeft,
     getData,
+    formatDate,
+    formatTime,
   } = props;
 
   return (
@@ -31,7 +33,8 @@ function ViewTicketInfo(props) {
         <div className="ml-4 flex flex-col justify-center">
           <h2 className="text-2xl font-bold">{getData.title}</h2>
           <p className="mt-2 text-gray-600">
-            📅 {getData.date} | 🕒 {getData.startTime} to {getData.endTime}
+            📅 {formatDate(getData.date)} | 🕒 {formatTime(getData.startTime)}{" "}
+            WIB to {formatTime(getData.endTime)} WIB
           </p>
           <p className="text-gray-600">📍 {getData.location}</p>
           <p className="mt-2 text-gray-700">{getData.description}</p>
