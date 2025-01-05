@@ -32,7 +32,12 @@ function DetailEvent() {
     return `${hour}h ${minute}m`;
   };
 
-  const { data, isFetching, isLoading, error } = useQuery({
+  const {
+    data: detail,
+    isFetching,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: [type, id],
     queryFn: async () =>
       await axios
@@ -44,14 +49,14 @@ function DetailEvent() {
     if (!token) {
       navigate("/signin");
     } else {
-      navigate(`/events/ticket-info/${id}`, { state: { data, id } });
+      navigate(`/events/ticket-info/${id}`, { state: { detail, id } });
     }
   };
 
   if (isFetching || isLoading) {
     return <SkeletonLoading />;
   }
-  if (!data || data.length === 0) {
+  if (!detail || detail.length === 0) {
     return <div>Event not found</div>;
   }
   if (error) {
@@ -62,7 +67,7 @@ function DetailEvent() {
       FaRegClock={FaRegClock}
       IoPeople={IoPeople}
       IoWarning={IoWarning}
-      data={data}
+      detail={detail}
       formatDate={formatDate}
       formatTime={formatTime}
       calculateDuration={calculateDuration}
